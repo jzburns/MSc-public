@@ -17,7 +17,7 @@ spec:
         image: docker.io/tudjburns/go-http-sre-crash
         livenessProbe:
           httpGet:
-            path: /
+            path: /getbalance
             port: 8080
             httpHeaders:
             - name: Web-Service-Up

@@ -35,12 +35,14 @@ func getBalance(w http.ResponseWriter, req *http.Request) {
 	log.Println("Processing GET request")
 	r := rand.New(rand.NewSource(time.Now().UnixNano()))
 	// once in error always in error
+	/**
 	if intErr == true {
 		e := errors.New("Internal Server error")
 		http.Error(w, e.Error(), 500)
 		log.Print("Internal Server Error [500]")
 		return
 	}
+	**/
 	// the default file to load
 	filename := "index.html"
 

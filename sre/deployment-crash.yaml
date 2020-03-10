@@ -15,3 +15,4 @@ spec:
       containers:
       - name: gohttpserver
         image: docker.io/tudjburns/go-http-sre-crash
+        imagePullPolicy: Always
