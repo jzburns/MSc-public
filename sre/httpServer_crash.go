@@ -41,17 +41,19 @@ func getIndex(w http.ResponseWriter, req *http.Request) {
 	// roll the dice
 	num := rand.Intn(100)
 	if num < 2 {
-		log.Fatalf("Server Error. Core Dumped [%d]", num)
+		log.Fatalf("ERROR Server Core Dumped [%d]", num)
 		os.Exit(1)
 	} else if num < 20 {
-		log.Print("Internal Server Error [500]")
-		e := errors.New("Internal Server error")
+		log.Print("ERROR Internal Server Error [500]")
+		e := errors.New("ERROR Internal Server error")
 		http.Error(w, e.Error(), 500)
 		// now we're stuck
 		intErr = true
 		return
 	} else if num < 50 {
-		log.Print("Null Pointer Exception")
+		// if the datanase is not reachable
+		// lets tell the user to check back later
+		log.Print("ERROR Database Not Reachable")
 		filename = "error.html"
 	}
 	html, err := ioutil.ReadFile(filename)
