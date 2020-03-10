@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#stop_load").attr("disabled", true);
+            $("#spinner").show();
+
+            // get the IP stuffs
+            $.post("/get_ip_addr",
+                {},
+                function (data, status) {
+                    if (data.ChannelState == "STOPPED") {
+                        $("#start_load").attr("disabled", false);
+                        $("#stop_load").attr("disabled", true);
+                    } else {
+                        $("#stop_load").attr("disabled", false);
+                        $("#start_load").attr("disabled", true);
+                        $("#spinner").show();
+                    }
+                    var txt = "Load Average: "
+                    $("#load-avg").text(txt + "[  " + data.Uptime + "  ]")
+                    $("#ip").text("IP Addresses: ")
+                    data.IPs.forEach(justDoIt)
+                    function justDoIt(value, index) {
+                        txt = $("#ip").text()
+                        $("#ip").text(txt + "[  " + value + "  ]")
+                    }
+                });
+
+            $("#start_load").click(function () {
+                $("#start_load").attr("disabled", true);
+                $("#stop_load").attr("disabled", false);
+                // alert("load test is starting...");
+                $("#spinner").show();
+                $.post("/start_load_test",
+                    {},
+                    function (data, status) {
+                        $("#load-ip").text("")
+                        data.IPs.forEach(justDoIt)
+                        function justDoIt(value, index) {
+                            var txt =  $("#load-ip").text()
+                            $("#load-ip").text(txt + "[  " + value + "  ]")
+                        }
+                    });
+            });
+            $("#stop_load").click(function () {
+                $("#start_load").attr("disabled", false);
+                $("#stop_load").attr("disabled", true);
+                $("#spinner").hide();
+                // alert("load test is stopping...");
+                $.post("/stop_load_test",
+                    {},
+                    function (data, status) {
+                        $("#load-stop-ip").text("")
+                        data.IPs.forEach(justDoIt)
+                        function justDoIt(value, index) {
+                            var txt =  $("#load-stop-ip").text()
+                            $("#load-stop-ip").text(txt + "[  " + value + "  ]")
+                        }
+                    });
+            });
+        });
+    </script>
+<body>
+
+<div class="container">
+    <div class="jumbotron text-center">
+        <img src="https://tudublin.ie/media/website/site-assets/images/tu-dublin-logo.svg"
+             style="height: 100px; width: 100px" align="left">
+        <img src="https://golang.org/lib/godoc/images/go-logo-blue.svg" style="height: 100px; width: 100px"
+             align="right">
+        <h4>Golang Load Tester V2</h4>
+    </div>
+</div>
+
+
+<div class="container">
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">Page Served From Node with Data:</div>
+                <div class="panel-body" id="ip"></div>
+                <div class="panel-body" id="load-avg"></div>
+            </div>
+        </div>
+</div>
+
+<div class="container">
+    <div class="panel-group">
+        <button type="button" class="btn btn-primary" id="start_load">Start Load Test</button>
+        <button type="button" class="btn btn-primary" id="stop_load">Stop Load Test</button>
+    </div>
+</div>
+
+<div class="container">
+    <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-heading">Load Test Started On Node</div>
+            <div class="panel-body" id="load-ip"></div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-heading">Load Test Stopped On Node</div>
+            <div class="panel-body" id="load-stop-ip"></div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html> 

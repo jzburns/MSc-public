@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gohttpk8s
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      run: load-tester
+  template:
+    metadata:
+      labels:
+        run: load-tester
+    spec:
+      containers:
+      - name: gohttpserver
+        image: docker.io/tudjburns/go-http:v2

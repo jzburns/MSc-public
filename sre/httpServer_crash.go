@@ -2,6 +2,8 @@
 * (C) John Burns 2020
 * All rights Reserved
 * For non-commercial academic use only
+* 
+* Intermittent Fault Injection Lab
 */
 package main
 
@@ -15,15 +17,16 @@ import (
 	"errors"
 )
 
-// keep the state between calls
+// keep the error 500 state between calls
+// once it fails it keeps failing
 var intErr = false
 
 // HTTP / call back
 // can do 4 things:
 // 0.02 chance to core dump
-// 0.02-0.20 chance for internal server error
-// 0.21-0.50 chance for NPE
-// 0.31 - 1.0 the chance for OK
+// 0.021-0.20 chance for internal server error
+// 0.21-0.50 chance for Database connection down
+// 0.51 - 1.0 the chance for OK
 func getIndex(w http.ResponseWriter, req *http.Request) {
 
 	// would be useful to get the IP here too:
@@ -56,6 +59,8 @@ func getIndex(w http.ResponseWriter, req *http.Request) {
 		log.Print("ERROR Database Not Reachable")
 		filename = "error.html"
 	}
+	// we made it to here so no error
+	// now serve the page
 	html, err := ioutil.ReadFile(filename)
 	if err != nil {
 		log.Fatalf("unable to read file: %v", err)
