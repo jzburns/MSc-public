@@ -11,6 +11,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"time"
 	"os"
 	"net/http"
 	"math/rand"
@@ -20,17 +21,19 @@ import (
 // keep the error 500 state between calls
 // once it fails it keeps failing
 var intErr = false
+var latency = 0
 
 // HTTP / call back
 // can do 4 things:
 // 0.02 chance to core dump
 // 0.021-0.20 chance for internal server error
 // 0.21-0.50 chance for Database connection down
-// 0.51 - 1.0 the chance for OK
-func getIndex(w http.ResponseWriter, req *http.Request) {
-
+// 0.51 - 0.7 the chance for Multi-second latency
+// 0.71 - 1.0 the chance for OK
+func getBalance(w http.ResponseWriter, req *http.Request) {
 	// would be useful to get the IP here too:
 	log.Println("Processing GET request")
+	r := rand.New(rand.NewSource(time.Now().UnixNano()))
 	// once in error always in error
 	if intErr == true {
 		e := errors.New("Internal Server error")
@@ -42,7 +45,7 @@ func getIndex(w http.ResponseWriter, req *http.Request) {
 	filename := "index.html"
 
 	// roll the dice
-	num := rand.Intn(100)
+	num := r.Intn(100)
 	if num < 2 {
 		log.Fatalf("ERROR Server Core Dumped [%d]", num)
 		os.Exit(1)
@@ -58,7 +61,14 @@ func getIndex(w http.ResponseWriter, req *http.Request) {
 		// lets tell the user to check back later
 		log.Print("ERROR Database Not Reachable")
 		filename = "error.html"
+	} else if num < 70 {
+		// Latency problems...
+		latency += r.Intn(500)
+		// it gets slower and slower
+		time.Sleep(time.Duration(latency) * time.Millisecond)
+		log.Printf("WARNING Server Latency is now [%d] Milliseconds", latency)
 	}
+	// we made it to here so no error
 	// we made it to here so no error
 	// now serve the page
 	html, err := ioutil.ReadFile(filename)
@@ -71,7 +81,7 @@ func getIndex(w http.ResponseWriter, req *http.Request) {
 func main() {
 	port := ":8080"
 	// register the call back
-	http.HandleFunc("/", getIndex)
+	http.HandleFunc("/getbalance", getBalance)
 
 	// listen and serve
 	fmt.Printf("Listening on port %s\n", port)
