@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: gohttpserver
-        image: docker.io/tudjburns/go-http-sre-crash
+        image: eu.gcr.io/<YOUR PROJECT ID HERE>/go-http-sre-crash
         livenessProbe:
           httpGet:
             path: /getbalance
