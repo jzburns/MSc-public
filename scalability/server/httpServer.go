@@ -1,3 +1,10 @@
+/*
+* (C) John Burns 2020
+* All rights Reserved
+* For non-commercial academic use only
+* 
+* go load tester with uptime
+*/
 package main
 
 import (
