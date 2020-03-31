@@ -8,13 +8,13 @@
 
 1. `gsutil mb gs://$BUCKET_NAME`
 
-1. `gcloud alpha functions deploy HelloGCS --runtime=go111 --entry-point=HelloGCS --trigger-resource=$BUCKET_NAME --trigger-event=providers/cloud.storage/eventTypes/object.change`
+1. `gcloud beta functions deploy HelloGCS --runtime=go111 --entry-point=HelloGCS --trigger-resource=$BUCKET_NAME --trigger-event=providers/cloud.storage/eventTypes/object.change`
 
 1. `go test -v ./hello_cloud_storage_system_test.go`
 
 ### HTTP
 
-1. `gcloud alpha functions deploy HelloHTTP --region=us-central1 --runtime=go111 --trigger-http`
+1. `gcloud beta functions deploy HelloHTTP --region=us-central1 --runtime=go111 --trigger-http`
 
 1. `export BASE_URL=https://REGION-PROJECT.cloudfunctions.net/`
 
@@ -22,8 +22,19 @@
 
 ### Pub/Sub
 
-1. `export FUNCTIONS_TOPIC=example-topic`
+first we create the topic:
+```
+export FUNCTIONS_TOPIC=functions-topic
+gcloud pubsub topics create $FUNCTIONS_TOPIC
 
-1. `gcloud alpha functions deploy HelloPubSub --runtime=go111 --trigger-topic=$FUNCTIONS_TOPIC`
+```
+then we export the our project ID:
+(don't forget to change this to your project ID)
+```
+export GCP_PROJECT=lunar-clone-235320
+```
+Now run these steps:
+
+1. `gcloud beta functions deploy HelloPubSub --runtime=go111 --trigger-topic=$FUNCTIONS_TOPIC`
 
 1. `go test -v ./hello_pubsub_system_test.go`
