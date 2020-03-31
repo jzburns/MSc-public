@@ -68,7 +68,6 @@ first we create the topic:
 ```
 export FUNCTIONS_TOPIC=functions-topic
 gcloud pubsub topics create $FUNCTIONS_TOPIC
-
 ```
 Now run these steps:
 
