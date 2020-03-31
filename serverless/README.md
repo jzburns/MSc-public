@@ -35,6 +35,10 @@ export GCP_PROJECT=lunar-clone-235320
 ```
 Now run these steps:
 
-1. `gcloud beta functions deploy HelloPubSub --runtime=go111 --trigger-topic=$FUNCTIONS_TOPIC`
+1. `gcloud functions deploy HelloPubSub --runtime=go111 --trigger-topic=$FUNCTIONS_TOPIC`
 
 1. `go test -v ./hello_pubsub_system_test.go`
+
+1. `gcloud pubsub topics publish $FUNCTIONS_TOPIC --message "This is a Test Message!!"`
+
+You should now see the message stored in the log files for the cloud function.
