@@ -58,10 +58,7 @@ gcloud compute instance-groups managed set-autoscaling go-http-ig \
   --scale-based-on-cpu \
   --target-cpu-utilization=0.4
 ```
-
-finally, the load balancer load balancer
-backend services drop %age to 60, port 8080, attach to  go-http-ig
-frontend port 80, everything else default
+### 3. Create the an 8080 firewall rule
 
 We need to allow 8080 traffic in, set lets 
 create a rule ``default-allow-8080``
@@ -73,8 +70,10 @@ gcloud compute firewall-rules create default-allow-8080 \
     --direction=ingress \
     --rules=tcp:8080
 ```
-Now create the IPV4 adress called ``lb-ipv4-1`` for the load 
-balancer
+
+### 4. Create the Load Balancer IPV4 Address and Named Ports
+
+Now create the IPV4 adress called ``lb-ipv4-1`` for the load balancer
 
 ```
 gcloud compute addresses create lb-ipv4-1 \
@@ -84,17 +83,21 @@ gcloud compute addresses create lb-ipv4-1 \
 Named ports can be assigned to an instance group, which indicates 
 that the service is available on all instances in the group. 
 This information is used by the HTTP Load Balancing service.
+
 ```
 gcloud compute instance-groups unmanaged set-named-ports go-http-ig \
     --named-ports http:8080 \
     --zone us-central1-a
 ```
 
+### 5. The Load Balancer Health Checks
+
 next we configure health checks ``http-basic-check``
 ```
 gcloud compute health-checks create http http-basic-check \
     --port 8080
 ```
+### 6. Create the **Backend** Service
 
 Now we create a backend service called ``go-http-backend-service``
 ```
@@ -103,8 +106,11 @@ gcloud compute backend-services create go-http-backend-service \
     --health-checks http-basic-check \
     --global
 ```
-so we can attach the load-balancer policy 
-``CPU UTILIZATION = 40%``
+
+### 7. Create the Load Balancer Policy
+
+Attach the load-balancer policy ``CPU UTILIZATION = 40%``
+
 ```
 gcloud compute backend-services add-backend go-http-backend-service \
     --balancing-mode=UTILIZATION \
@@ -114,6 +120,7 @@ gcloud compute backend-services add-backend go-http-backend-service \
     --instance-group-zone=us-central1-a \
     --global
 ```
+### 8. Create the **Frontend** Service
 
 These next two steps configure the frontend service 
 (``web-map``) and attach the front end to the backend
