@@ -11,15 +11,6 @@ gcloud compute instance-templates create-with-container go-http-template \
     --container-image docker.io/tudjburns/go-http:latest \
     --boot-disk-size 250GB
 ```
-you may see the following warning:
-
-```
-WARNING: You have selected a disk size of under [200GB]. 
-This may result in poor I/O performance. 
-For more information, see: https://developers.google.com/compute/docs/disks#performance.
-```
-But it is OK to keep going.
-
 next we need an instance group that 
 uses the template
 place it in ``us-central1-a`` called ``go-http-ig``
