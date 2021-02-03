@@ -11,6 +11,17 @@ gcloud compute instance-templates create-with-container go-http-template \
     --container-image docker.io/tudjburns/go-http:latest \
     --boot-disk-size 250GB
 ```
+
+You may see this message:
+
+```
+API [compute.googleapis.com] not enabled on project [749635659654]. 
+Would you like to enable and retry (this will take a few minutes)? 
+(y/N)? 
+
+```
+You can enter ``Y`` here and wait (a bit...)
+
 next we need an instance group that 
 uses the template
 place it in ``us-central1-a`` called ``go-http-ig``
