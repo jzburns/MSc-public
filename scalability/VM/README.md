@@ -1,6 +1,6 @@
 # Autoscale groups with GCP
 
-## configure the instance template first
+### 1. Create the Instance Template
 
 First we create the instance template ``go-http-template``
 ```
@@ -22,9 +22,18 @@ Would you like to enable and retry (this will take a few minutes)?
 ```
 You can enter ``Y`` here and wait (a bit...)
 
-next we need an instance group that 
-uses the template
-place it in ``us-central1-a`` called ``go-http-ig``
+You should now see:
+
+```
+NAME              MACHINE_TYPE   PREEMPTIBLE  CREATION_TIMESTAMP
+go-http-template  n1-standard-1               2021-02-03T07:26:41.022-08:00
+```
+As you can see, we have our instance template ready.
+
+### 2. Create the Instance Group
+
+next we need an instance group that  uses the template place it in ``us-central1-a`` called ``go-http-ig``
+
 ```
 gcloud compute instance-groups managed create go-http-ig \
   --zone us-central1-a \
