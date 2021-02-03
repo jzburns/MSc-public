@@ -9,7 +9,7 @@ gcloud compute instance-templates create-with-container go-http-template \
     --image-family cos-stable \
     --image-project cos-cloud \
     --container-image docker.io/tudjburns/go-http:latest \
-    --boot-disk-size 100GB
+    --boot-disk-size 250GB
 ```
 you may see the following warning:
 
