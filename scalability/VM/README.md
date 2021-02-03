@@ -40,6 +40,12 @@ gcloud compute instance-groups managed create go-http-ig \
   --template go-http-template \
   --size 0
 ```
+and you should see the following output:
+
+```
+NAME        LOCATION       SCOPE  BASE_INSTANCE_NAME  SIZE  TARGET_SIZE  INSTANCE_TEMPLATE  AUTOSCALED
+go-http-ig  us-central1-a  zone   go-http-ig          0     0            go-http-template   no
+```
 
 now the ASG autoscale for ``go-http-ig``
 
@@ -53,8 +59,7 @@ gcloud compute instance-groups managed set-autoscaling go-http-ig \
   --target-cpu-utilization=0.4
 ```
 
-finally, the load balancer
-load balancer
+finally, the load balancer load balancer
 backend services drop %age to 60, port 8080, attach to  go-http-ig
 frontend port 80, everything else default
 
