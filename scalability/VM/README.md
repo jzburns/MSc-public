@@ -1,6 +1,6 @@
 # Autoscale groups with GCP
 
-### 1. Create the Instance Template
+### 1. Instance Template
 
 First we create the instance template ``go-http-template``
 ```
@@ -30,7 +30,7 @@ go-http-template  n1-standard-1               2021-02-03T07:26:41.022-08:00
 ```
 As you can see, we have our instance template ready.
 
-### 2. Create the Instance Group
+### 2. Instance Group
 
 next we need an instance group that  uses the template place it in ``us-central1-a`` called ``go-http-ig``
 
@@ -58,7 +58,7 @@ gcloud compute instance-groups managed set-autoscaling go-http-ig \
   --scale-based-on-cpu \
   --target-cpu-utilization=0.4
 ```
-### 3. Create the an 8080 firewall rule
+### 3. 8080 firewall rule
 
 We need to allow 8080 traffic in, set lets 
 create a rule ``default-allow-8080``
@@ -71,7 +71,7 @@ gcloud compute firewall-rules create default-allow-8080 \
     --rules=tcp:8080
 ```
 
-### 4. Create the Load Balancer IPV4 Address and Named Ports
+### 4. Load Balancer IPV4 Address and Named Ports
 
 Now create the IPV4 adress called ``lb-ipv4-1`` for the load balancer
 
@@ -97,7 +97,7 @@ next we configure health checks ``http-basic-check``
 gcloud compute health-checks create http http-basic-check \
     --port 8080
 ```
-### 6. Create the **Backend** Service
+### 6. Backend Service
 
 Now we create a backend service called ``go-http-backend-service``
 ```
@@ -107,7 +107,7 @@ gcloud compute backend-services create go-http-backend-service \
     --global
 ```
 
-### 7. Create the Load Balancer Policy
+### 7. Load Balancer Policy
 
 Attach the load-balancer policy ``CPU UTILIZATION = 40%``
 
@@ -120,7 +120,7 @@ gcloud compute backend-services add-backend go-http-backend-service \
     --instance-group-zone=us-central1-a \
     --global
 ```
-### 8. Create the **Frontend** Service
+### 8.Frontend Service
 
 These next two steps configure the frontend service 
 (``web-map``) and attach the front end to the backend
