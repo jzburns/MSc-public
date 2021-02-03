@@ -14,7 +14,9 @@ gcloud compute instance-templates create-with-container go-http-template \
 you may see the following warning:
 
 ```
-WARNING: You have selected a disk size of under [200GB]. This may result in poor I/O performance. For more information, see: https://developers.google.com/compute/docs/disks#performance.
+WARNING: You have selected a disk size of under [200GB]. 
+This may result in poor I/O performance. 
+For more information, see: https://developers.google.com/compute/docs/disks#performance.
 ```
 But it is OK to keep going.
 
