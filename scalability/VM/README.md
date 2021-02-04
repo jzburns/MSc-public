@@ -220,6 +220,8 @@ gcloud compute forwarding-rules create http-content-rule \
 ```
 ### Testing our ASG
 
+It can take around 5 minutes for the load balancer to start serving traffic. Lets look at the web page for the ``Golang Load Tester``
+
 # Teardown:
 Teardown components in reverse order
 ```
