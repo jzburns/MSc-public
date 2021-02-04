@@ -120,7 +120,7 @@ gcloud compute backend-services add-backend go-http-backend-service \
     --instance-group-zone=us-central1-a \
     --global
 ```
-### 8.Frontend Service
+### 8. Frontend Service
 
 These next two steps configure the frontend service 
 (``web-map``) and attach the front end to the backend
@@ -133,6 +133,7 @@ This is the proxy (we don't see a proxy when using the UI)
 gcloud compute target-http-proxies create http-lb-proxy \
     --url-map web-map
 ```
+### 9. Frontend Service Port
 
 Finally, we complete the frontend service by specifying
 the port to listen adn the proxy to route traffic to
@@ -145,6 +146,7 @@ gcloud compute forwarding-rules create http-content-rule \
     --target-http-proxy=http-lb-proxy \
     --ports=80
 ```
+### Testing our ASG
 
 # Teardown:
 Teardown components in reverse order
