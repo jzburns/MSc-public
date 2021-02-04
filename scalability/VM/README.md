@@ -202,13 +202,13 @@ gcloud compute forwarding-rules create http-content-rule \
 # Teardown:
 Teardown components in reverse order
 ```
-gcloud compute forwarding-rules delete --global http-content-rule 
-gcloud compute target-http-proxies delete http-lb-proxy
-gcloud compute url-maps delete web-map
-gcloud compute backend-services delete --global go-http-backend-service 
-gcloud compute health-checks delete http-basic-check
-gcloud compute addresses delete --global lb-ipv4-1
-gcloud compute firewall-rules delete default-allow-8080
-gcloud compute instance-groups managed delete --zone us-central1-a go-http-ig
-gcloud compute instance-templates delete go-http-template
+gcloud compute forwarding-rules delete -q --global http-content-rule 
+gcloud compute target-http-proxies delete -q http-lb-proxy
+gcloud compute url-maps delete -q web-map
+gcloud compute backend-services delete -q --global go-http-backend-service 
+gcloud compute health-checks delete -q http-basic-check
+gcloud compute addresses delete -q --global lb-ipv4-1
+gcloud compute firewall-rules delete -q default-allow-8080
+gcloud compute instance-groups managed delete -q --zone us-central1-a go-http-ig
+gcloud compute instance-templates delete -q go-http-template
 ```
