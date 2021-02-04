@@ -115,6 +115,15 @@ next we configure health checks ``http-basic-check``
 gcloud compute health-checks create http http-basic-check \
     --port 8080
 ```
+
+and the following output should be observed:
+
+```
+Created [https://www.googleapis.com/compute/v1/projects/it-quality-attributes-302610/global/healthChecks/http-basic-check].
+NAME              PROTOCOL
+http-basic-check  HTTP
+```
+
 ### 6. Backend Service
 
 Now we create a backend service called ``go-http-backend-service``
@@ -123,6 +132,13 @@ gcloud compute backend-services create go-http-backend-service \
     --protocol HTTP \
     --health-checks http-basic-check \
     --global
+```
+
+output: 
+```
+Created [https://www.googleapis.com/compute/v1/projects/it-quality-attributes-302610/global/backendServices/go-http-backend-service].
+NAME                     BACKENDS  PROTOCOL
+go-http-backend-service            HTTP
 ```
 
 ### 7. Load Balancer Policy
@@ -138,6 +154,11 @@ gcloud compute backend-services add-backend go-http-backend-service \
     --instance-group-zone=us-central1-a \
     --global
 ```
+Output:
+```
+Updated [https://www.googleapis.com/compute/v1/projects/it-quality-attributes-302610/global/backendServices/go-http-backend-service].
+```
+
 ### 8. Frontend Service
 
 These next two steps configure the frontend service 
@@ -147,16 +168,28 @@ gcloud compute url-maps create web-map \
     --default-service go-http-backend-service
 ```
 This is the proxy (we don't see a proxy when using the UI)
+
+```
+NAME     DEFAULT_SERVICE
+web-map  backendServices/go-http-backend-service
+```
+
 ```
 gcloud compute target-http-proxies create http-lb-proxy \
     --url-map web-map
 ```
+
+```
+NAME           URL_MAP
+http-lb-proxy  web-map
+```
+
 ### 9. Frontend Service Port
 
 Finally, we complete the frontend service by specifying
 the port to listen adn the proxy to route traffic to
 We are now done and you should have a load balancer
-called ``web-map`'
+called ``web-map``
 ```
 gcloud compute forwarding-rules create http-content-rule \
     --address=lb-ipv4-1\
