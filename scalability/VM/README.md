@@ -71,6 +71,13 @@ gcloud compute firewall-rules create default-allow-8080 \
     --rules=tcp:8080
 ```
 
+We should see the following output:
+
+```
+NAME                NETWORK  DIRECTION  PRIORITY  ALLOW     DENY  DISABLED
+default-allow-8080  default  INGRESS    1000      tcp:8080        False
+```
+
 ### 4. Load Balancer IPV4 Address and Named Ports
 
 Now create the IPV4 adress called ``lb-ipv4-1`` for the load balancer
@@ -80,6 +87,11 @@ gcloud compute addresses create lb-ipv4-1 \
     --ip-version=IPV4 \
     --global
 ```
+Again, the output should resemble this:
+```
+Created [https://www.googleapis.com/compute/v1/projects/msc-architecture/global/addresses/lb-ipv4-1].
+```
+
 Named ports can be assigned to an instance group, which indicates 
 that the service is available on all instances in the group. 
 This information is used by the HTTP Load Balancing service.
@@ -88,6 +100,12 @@ This information is used by the HTTP Load Balancing service.
 gcloud compute instance-groups unmanaged set-named-ports go-http-ig \
     --named-ports http:8080 \
     --zone us-central1-a
+```
+
+We should see this output:
+
+```
+Updated [https://www.googleapis.com/compute/v1/projects/it-quality-attributes-302610/zones/us-central1-a/instanceGroups/go-http-ig].
 ```
 
 ### 5. The Load Balancer Health Checks
