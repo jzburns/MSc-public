@@ -58,6 +58,27 @@ gcloud compute instance-groups managed set-autoscaling go-http-ig \
   --scale-based-on-cpu \
   --target-cpu-utilization=0.4
 ```
+
+You should see this output (or something similar)
+
+```
+autoscalingPolicy:
+  coolDownPeriodSec: 60
+  cpuUtilization:
+    utilizationTarget: 0.4
+  maxNumReplicas: 4
+  minNumReplicas: 1
+  mode: ON
+creationTimestamp: '2021-02-04T02:24:50.785-08:00'
+id: '3467127724583581085'
+kind: compute#autoscaler
+name: go-http-ig-l9jb
+selfLink: https://www.googleapis.com/compute/v1/projects/it-quality-attributes-302610/zones/us-central1-a/autoscalers/go-http-ig-l9jb
+status: ACTIVE
+target: https://www.googleapis.com/compute/v1/projects/it-quality-attributes-302610/zones/us-central1-a/instanceGroupManagers/go-http-ig
+zone: https://www.googleapis.com/compute/v1/projects/it-quality-attributes-302610/zones/us-central1-a
+```
+
 ### 3. 8080 firewall rule
 
 We need to allow 8080 traffic in, set lets 
