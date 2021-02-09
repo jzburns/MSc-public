@@ -184,6 +184,8 @@ Updated [https://www.googleapis.com/compute/v1/projects/it-quality-attributes-30
 
 These next two steps configure the frontend service 
 (``web-map``) and attach the front end to the backend
+
+#### part A.
 ```
 gcloud compute url-maps create web-map \
     --default-service go-http-backend-service
@@ -194,7 +196,7 @@ This is the proxy (we don't see a proxy when using the UI)
 NAME     DEFAULT_SERVICE
 web-map  backendServices/go-http-backend-service
 ```
-
+#### part B.
 ```
 gcloud compute target-http-proxies create http-lb-proxy \
     --url-map web-map
