@@ -164,12 +164,12 @@ go-http-backend-service            HTTP
 
 ### 7. Load Balancer Policy
 
-Attach the load-balancer policy ``CPU UTILIZATION = 70%``
+Attach the load-balancer policy ``CPU UTILIZATION = 80%``
 
 ```
 gcloud compute backend-services add-backend go-http-backend-service \
     --balancing-mode=UTILIZATION \
-    --max-utilization=0.7 \
+    --max-utilization=0.8 \
     --capacity-scaler=1 \
     --instance-group=go-http-ig \
     --instance-group-zone=us-central1-a \
