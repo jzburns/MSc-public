@@ -56,7 +56,7 @@ gcloud compute instance-groups managed set-autoscaling go-http-ig \
   --min-num-replicas=1 \
   --cool-down-period=60 \
   --scale-based-on-cpu \
-  --target-cpu-utilization=0.4
+  --target-cpu-utilization=0.8
 ```
 
 You should see this output (or something similar)
@@ -164,12 +164,12 @@ go-http-backend-service            HTTP
 
 ### 7. Load Balancer Policy
 
-Attach the load-balancer policy ``CPU UTILIZATION = 40%``
+Attach the load-balancer policy ``CPU UTILIZATION = 70%``
 
 ```
 gcloud compute backend-services add-backend go-http-backend-service \
     --balancing-mode=UTILIZATION \
-    --max-utilization=0.4 \
+    --max-utilization=0.7 \
     --capacity-scaler=1 \
     --instance-group=go-http-ig \
     --instance-group-zone=us-central1-a \
