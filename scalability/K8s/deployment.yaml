@@ -15,3 +15,6 @@ spec:
       containers:
       - name: gohttpserver
         image: docker.io/tudjburns/go-http:latest
+        resources:
+          limits:
+            cpu: 200m
