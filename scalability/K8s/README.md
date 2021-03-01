@@ -1,6 +1,6 @@
-# Lab Part 1 Deploying and Starting Workload
+## Lab Part 1 Deploying and Starting Workload
 
-## 1.1 Clone the repo
+### 1.1 Clone the repo
 
 First you should clone the lab resources:
 
@@ -8,7 +8,7 @@ First you should clone the lab resources:
 git clone https://github.com/jzburns/MSc-public.git
 ```
 
-## 1.2 View the files
+### 1.2 View the files
 
 Lets look at the deployment file which you can get on the moodle page, its called ``deployment.yaml``:
 
@@ -57,7 +57,7 @@ spec:
     targetPort: 8080
 ```
 
-## 1.3 Create the cluster - static size of 3 nodes
+### 1.3 Create the cluster - static size of 3 nodes
 Let's go ahead now and create a defaul cluster with 3 nodes
 
 ```
@@ -70,7 +70,7 @@ WARNING: Starting in January 2021, clusters will use the Regular release channel
 ...
 ```
 
-## 1.4 Cluster state without workload
+### 1.4 Cluster state without workload
 
 Before we provision our ``deployment`` and ``service`` let's take a look at the cluster (without any workload), by visiting the console:
 
