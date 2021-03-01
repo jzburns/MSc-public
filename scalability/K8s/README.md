@@ -294,9 +294,16 @@ kubectl apply -f service.yaml
 ```
 This make take a few minutes to take effect. 
 
+We also need to apply HPA (Horizontal Pod Autoscaler)
+
+```
+kubectl apply -f hpa.yaml 
+```
+We can now use this to monitor the pod state
+
 ### 3.4 Starting the load test
 
-We have 3 Pods running our workload, so we can bring up the browser, using 3 different windows and some icognito sessions, and start the load test running on 3 confirmed instances. 
+We have 3 Pods running our workload, so we can bring up the browser, start one load test
 
 ***It is important that when we start a load test that we get a confirmation message on the web page***
 
@@ -304,6 +311,31 @@ We have 3 Pods running our workload, so we can bring up the browser, using 3 dif
 
 After starting the load test running on each Pod, we would expect to see the cluster size increase from 3 to 4 nodes...does it?
 
+If you get the pods using ``kubectl get pods``
+
+We get
+
+```
+NAME                        READY   STATUS    RESTARTS   AGE
+gohttpk8s-84d54c5f8-2jwgf   1/1     Running   0          2m57s
+gohttpk8s-84d54c5f8-594nd   1/1     Running   0          2m57s
+gohttpk8s-84d54c5f8-jcx44   1/1     Running   0          8m49s
+gohttpk8s-84d54c5f8-ljxz6   1/1     Running   0          2m56s
+gohttpk8s-84d54c5f8-lxws8   1/1     Running   0          8m49s
+gohttpk8s-84d54c5f8-tm89t   1/1     Running   0          8m49s
+gohttpk8s-84d54c5f8-w2kcj   1/1     Running   0          2m57s
+```
+Let's see how the HPA is doing by using the command ``kubectl get hpa``
+
+```
+kubectl get hpakubectl get hpa
+NAME    REFERENCE              TARGETS   MINPODS   MAXPODS   REPLICAS   AGE
+gohpa   Deployment/gohttpk8s   23%/50%   1         10        7          8m53s
+```
+
+We can see that after some fluctuations, it has met the requirement by running 7 out of a maximum of 10 pods.
+
+We have now demonstrated Pod autoscaling, so we can tear down now.
 
 ### 3.6 Teardown
 
