@@ -253,10 +253,10 @@ spec:
         image: docker.io/tudjburns/go-http:v2
         resources:
           limits:
-            cpu: 400m
+            cpu: 300m
 ```
 
-As you can see, we are declaring that each container in this Pod definition requires 40% of the CPU of the node. This is what K8s uses to determine the scale out event for the cluster (ie, to add more VMs). 
+As you can see, we are declaring that each container in this Pod definition requires 30% of the CPU of the node. This is what K8s uses to determine the scale out event for the cluster (ie, to add more VMs). 
 
 ### 3.2 The new cluster definition
 
