@@ -4,7 +4,7 @@
 1. To create and analyze a static K8s cluster
 2. To understand and deploy workload and service ``yaml`` files
 3. To apply a rolling update to the cluster
-4. To create dynamic cluster and appropriately parameterized deployment ``yaml`` files
+4. To create dynamic cluster with autoscaling and appropriately parameterized deployment ``yaml`` files
 5. To analyze dynamic cluster dynamics
 6. To teardown K8s cluster
 
@@ -294,7 +294,22 @@ kubectl apply -f service.yaml
 ```
 This make take a few minutes to take effect. 
 
-We also need to apply HPA (Horizontal Pod Autoscaler)
+We also need to apply HPA (Horizontal Pod Autoscaler). Let's have a look at it ``$ more hpa.yaml``
+
+```
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: gohpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: gohttpk8s
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 50
+```  
 
 ```
 kubectl apply -f hpa.yaml 
