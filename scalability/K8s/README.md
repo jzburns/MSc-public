@@ -142,9 +142,9 @@ your browser.You now have a kubernetes cluster up and running
 Here is a useful [kubernetes command list](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#viewing-finding-resources)
 
 
-# Lab Part 2 Rollling Update to Cluster Nodes
+## Lab Part 2 Rollling Update to Cluster Nodes
 
-## 2.1 Version 2 of our deployment
+### 2.1 Version 2 of our deployment
 
 Let's suppose we want to make a rolling update to our cluster nodes: we want to run a new version of our container service:
 
@@ -176,7 +176,7 @@ spec:
 
 so we have a new container to roll out: ``docker.io/tudjburns/go-http:v2``
 
-## 2.2 Deploy v2
+### 2.2 Deploy v2
 
 This is easy in Kubernetes, we simply apply the ``yaml`` file and sit back.
 
@@ -184,7 +184,7 @@ This is easy in Kubernetes, we simply apply the ``yaml`` file and sit back.
 kubectl apply -f deployment-v2.yaml
 ```
 
-## 2.3 Teardown
+### 2.3 Teardown
 
 We are now finished with the static cluster - so let's teardown
 
@@ -192,14 +192,14 @@ We are now finished with the static cluster - so let's teardown
 gcloud beta container clusters delete gohttpk8s  --zone us-central1-a
 ```
 
-# Lab Part 3
+## Lab Part 3
 
 Static clusters do not scale in our out. In order dynamically resize our cluster we need two additional steps:
 
 1. Create a new cluster with ``min`` and ``max`` node sizes declared
 2. Use a deployment the declares the CPU resources required
 
-## 3.1 The new deployment file
+### 3.1 The new deployment file
 
 Let's take a look at the deployment that declares CPU requirements:
 
@@ -234,7 +234,7 @@ spec:
 
 As you can see, we are declaring that each container in this Pod definition requires 40% of the CPU of the node. This is what K8s uses to determine the scale out event for the cluster (ie, to add more VMs). 
 
-## 3.2 The new cluster definition
+### 3.2 The new cluster definition
 
 Now we create a dynamic cluster ``min=3`` and ``max=6`` nodes:
 
@@ -243,7 +243,7 @@ gcloud beta container clusters create gohttpk8s --zone us-central1-a --enable-au
 ```
 
 
-## 3.3 Provision the workload and service now
+### 3.3 Provision the workload and service now
 
 ```
 kubectl apply -f deployment-cpu.yaml
@@ -254,4 +254,22 @@ Again, we use ``kubeapply`` to effect this service:
 kubectl apply -f service.yaml
 ```
 This make take a few minutes to take effect. 
+
+### 3.4 Starting the load test
+
+We have 3 Pods runningn with our workload, so we can bring up the browser, using 3 different windows and some icognito sessions, and start the load test running on 3 confirmed instances
+
+### 3.5 Cluster expands
+
+After starting the load test running on each Pod, we would expect to see the cluster si0ze increase from 3 to 4 nodes...does it?
+
+
+### 3.6 Teardown
+
+We are now finished with the static cluster - so let's teardown
+
+```
+gcloud beta container clusters delete gohttpk8s  --zone us-central1-a
+```
+
 
