@@ -123,6 +123,20 @@ Next, we use the ``kubeapply`` command in order to provision our workload:
 kubectl apply -f deployment.yaml
 ```
 
+and let's check to make sure our Pods started correctly:
+
+``$ kubectl get pods``
+
+Should yield:
+
+```
+NAME                         READY   STATUS    RESTARTS   AGE
+gohttpk8s-7df4b95775-2h94g   1/1     Running   0          115s
+gohttpk8s-7df4b95775-lthz9   1/1     Running   0          115s
+gohttpk8s-7df4b95775-ntcdh   1/1     Running   0          115s
+```
+
+
 ## 1.5 Provision the workload service
 
 Again, we use ``kubeapply`` to effect this service:
@@ -265,18 +279,33 @@ kubectl apply -f service.yaml
 ```
 This make take a few minutes to take effect. 
 
-### 3.4 Starting the load test
+### 3.5 Check the Pods
+
+``$ kubectl get pods``
+
+Should yield:
+
+```
+NAME                         READY   STATUS    RESTARTS   AGE
+gohttpk8s-7df4b95775-2h94g   1/1     Running   0          115s
+gohttpk8s-7df4b95775-lthz9   1/1     Running   0          115s
+gohttpk8s-7df4b95775-ntcdh   1/1     Running   0          115s
+```
+
+so it looks like our Pods are running, and the nodes were able to support the ``400ms`` requirements
+
+### 3.5 Starting the load test
 
 We have 3 Pods running our workload, so we can bring up the browser, using 3 different windows and some icognito sessions, and start the load test running on 3 confirmed instances. 
 
 ***It is important that when we start a load test that we get a confirmation message on the web page***
 
-### 3.5 Cluster expands
+### 3.6 Cluster expands
 
 After starting the load test running on each Pod, we would expect to see the cluster size increase from 3 to 4 nodes...does it?
 
 
-### 3.6 Teardown
+### 3.7 Teardown
 
 We are now finished with the static cluster - so let's teardown
 
