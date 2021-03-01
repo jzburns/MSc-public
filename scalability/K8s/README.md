@@ -1,4 +1,4 @@
-# Lab Part 1
+# Lab Part 1 Deploying and Starting Workload
 
 ## 1.1 Clone the repo
 
@@ -140,6 +140,47 @@ use the ``EXTERNAL-IP`` field and put this into
 your browser.You now have a kubernetes cluster up and running
 
 Here is a useful [kubernetes command list](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#viewing-finding-resources)
+
+
+# Lab Part 2 Rollling Update to Cluster Nodes
+
+## 2.1 Version 2 of our deployment
+
+Let's suppose we want to make a rolling update to our cluster nodes: we want to run a new version of our container service:
+
+```
+$ more deployment-v2.yaml
+```
+
+and we can see this:
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gohttpk8s
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      run: load-tester
+  template:
+    metadata:
+      labels:
+        run: load-tester
+    spec:
+      containers:
+      - name: gohttpserver
+        image: docker.io/tudjburns/go-http:v2
+```
+
+so we have a new container to roll out: ``docker.io/tudjburns/go-http:v2``
+
+This is easy in Kubernetes, we simply apply the ``yaml`` file and sit back:
+
+
+
+
 
 ## Teardown
 ```
