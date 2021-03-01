@@ -258,6 +258,23 @@ spec:
 
 As you can see, we are declaring that each container in this Pod definition requires 30% of the CPU of the node. This is what K8s uses to determine the scale out event for the cluster (ie, to add more VMs). 
 
+We also need to apply HPA (Horizontal Pod Autoscaler). Let's have a look at it ``$ more hpa.yaml``
+
+```
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: gohpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: gohttpk8s
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 50
+```  
+
 ### 3.2 The new cluster definition
 
 Now we create a dynamic cluster ``min=3`` and ``max=6`` nodes:
@@ -292,24 +309,7 @@ Again, we use ``kubeapply`` to effect this service:
 ```
 kubectl apply -f service.yaml
 ```
-This make take a few minutes to take effect. 
-
-We also need to apply HPA (Horizontal Pod Autoscaler). Let's have a look at it ``$ more hpa.yaml``
-
-```
-apiVersion: autoscaling/v1
-kind: HorizontalPodAutoscaler
-metadata:
-  name: gohpa
-spec:
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: gohttpk8s
-  minReplicas: 1
-  maxReplicas: 10
-  targetCPUUtilizationPercentage: 50
-```  
+This make take a few minutes to take effect. We can now apply the HPA scaler:
 
 ```
 kubectl apply -f hpa.yaml 
