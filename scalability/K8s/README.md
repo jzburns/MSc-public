@@ -1,20 +1,23 @@
 # Lab Part 1
+
+## 1.1 Clone the repo
+
 First you should clone the lab resources:
 
+```
+git clone https://github.com/jzburns/MSc-public.git
+```
 
-## Create the cluster - static size of 3 nodes
-
-```
-gcloud beta container clusters create gohttpk8s --zone us-central1-a
-```
-This will generate some warning messages (see below) but these can be ignored
-
-```
-WARNING: Your Pod address range (`--cluster-ipv4-cidr`) can accommodate at most 1008 node(s). 
-This will enable the autorepair feature for nodes. Please see https://cloud.google.com/kubernetes-engine/docs/node-auto-repair for more information on node autorepairs.
-```
+## 1.2 View the files
 
 Lets look at the deployment file which you can get on the moodle page, its called ``deployment.yaml``:
+
+```
+$ cd MSc-public/scalability/K8s
+$ more deployment.yaml
+
+```
+and you should see this
 ```
 apiVersion: apps/v1
 kind: Deployment
@@ -35,10 +38,48 @@ spec:
         image: docker.io/tudjburns/go-http:latest
 ```
 
-Next, we use the ``kubeapply`` command:
+Now lets look at the Service we need to create, 
+which in this case is a load balancer, and can
+be found in the file ``service.yaml``:
+
 ```
-kubectl apply -f deployment.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: go-http-nlb-service
+spec:
+  selector:
+    run: load-tester
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
 ```
+
+## 1.3 Create the cluster - static size of 3 nodes
+Let's go ahead now and create a defaul cluster with 3 nodes
+
+```
+gcloud beta container clusters create gohttpk8s --zone us-central1-a
+```
+This will generate some warning messages (see below) but these can be ignored
+
+```
+WARNING: Your Pod address range (`--cluster-ipv4-cidr`) can accommodate at most 1008 node(s). 
+...
+...
+```
+
+## 1.4 Cluster state without workload
+
+Before we provision our ``deployment`` and ``service`` let's take a look at the cluster (without any workload), by visiting the console:
+
+```
+https://console.cloud.google.com/kubernetes/list
+```
+Let's check out all the additional services that a K8s cluster runs
+
 
 Now lets look at the Service we need to create, 
 which in this case is a load balancer, and can
@@ -58,6 +99,22 @@ spec:
     port: 80
     targetPort: 8080
 ```
+
+Before we provision our ``service`` let's take a look at the cluster (without any workload), by visiting the console:
+
+```
+https://console.cloud.google.com/kubernetes/list
+```
+Let's check out all the additional services that a K8s cluster runs
+
+## 1.4 Provision the workload
+
+Next, we use the ``kubeapply`` command in order to provision our workload:
+```
+kubectl apply -f deployment.yaml
+```
+
+## 1.5 Provision the workload service
 
 Again, we use ``kubeapply`` to effect this service:
 ```
@@ -87,9 +144,8 @@ Here is a useful [kubernetes command list](https://kubernetes.io/docs/reference/
 
 ## Teardown
 ```
-gcloud beta container clusters delete gohttpk8s
+gcloud beta container clusters delete gohttpk8s  --zone us-central1-a
 ```
-
 
 # Lab Part 4
 ## A dynamic cluster ``min=3`` and ``max=6`` nodes
