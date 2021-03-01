@@ -337,7 +337,17 @@ We can see that after some fluctuations, it has met the requirement by running 7
 
 We have now demonstrated Pod autoscaling, so we can tear down now.
 
-### 3.6 Teardown
+### 3.6 HPA changes the Pod count
+
+It is quite interesting to see how the HPA service changes the Pod count over time:
+
+```
+NAME    REFERENCE              TARGETS   MINPODS   MAXPODS   REPLICAS   AGE
+gohpa   Deployment/gohttpk8s   41%/50%   1         10        4          11m
+```
+This is to be expected as it adjusts the number of Pods as a function of time.
+
+### 3.7 Teardown
 
 We are now finished with the static cluster - so let's teardown
 
