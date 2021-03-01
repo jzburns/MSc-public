@@ -1,20 +1,15 @@
-## Create the container to host the cluster
-Before you start, you may need to set your project
-ID from the cloud shell using the command:
+# Lab Part 1
+First you should clone the lab resources:
 
-```
-gcloud config set project PROJECT_ID
-```
-where ``PROJECT_ID`` is your project ID
+
+## Create the cluster - static size of 3 nodes
+
 ```
 gcloud beta container clusters create gohttpk8s --zone us-central1-a
 ```
 This will generate some warning messages (see below) but these can be ignored
 
 ```
-WARNING: Currently VPC-native is not the default mode during cluster creation. In the future, this will become the default mode and can be disabled using `--no-enable-ip-alias` flag. Use `--[no-]enable-ip-alias` flag to suppress this warning.
-WARNING: Newly created clusters and node-pools will have node auto-upgrade enabled by default. This can be disabled using the `--no-enable-autoupgrade` flag.
-WARNING: Starting in 1.12, default node pools in new clusters will have their legacy Compute Engine instance metadata endpoints disabled by default. To create a cluster with legacy instance metadata endpoints disabled in the default node pool, run `clusters create` with the flag `--metadata disable-legacy-endpoints=true`.
 WARNING: Your Pod address range (`--cluster-ipv4-cidr`) can accommodate at most 1008 node(s). 
 This will enable the autorepair feature for nodes. Please see https://cloud.google.com/kubernetes-engine/docs/node-auto-repair for more information on node autorepairs.
 ```
@@ -90,3 +85,17 @@ your browser.You now have a kubernetes cluster up and running
 
 Here is a useful [kubernetes command list](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#viewing-finding-resources)
 
+## Teardown
+```
+gcloud beta container clusters delete gohttpk8s
+```
+
+
+# Lab Part 4
+## A dynamic cluster ``min=3`` and ``max=6`` nodes
+
+```
+gcloud beta container clusters create gohttpk8s --zone us-central1-a --enable-autoscaling --max-nodes=6 --min-nodes=3
+```
+
+To take advantage of 
