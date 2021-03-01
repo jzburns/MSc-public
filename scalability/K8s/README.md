@@ -1,3 +1,13 @@
+# Kubernetes Scalability and Rolling Updates Lab
+
+## Learning Objectives
+1. To create and analyze a static K8s cluster
+2. To understand and deploy workload and service ``yaml`` files
+3. To apply a rolling update to the cluster
+4. To create dynamic cluster and appropriately parameterized deployment ``yaml`` files
+5. To analyze dynamic cluster dynamics
+6. To teardown K8s cluster
+
 ## Lab Part 1 Deploying and Starting Workload
 
 ### 1.1 Clone the repo
@@ -263,7 +273,7 @@ We have 3 Pods running our workload, so we can bring up the browser, using 3 dif
 
 ### 3.5 Cluster expands
 
-After starting the load test running on each Pod, we would expect to see the cluster si0ze increase from 3 to 4 nodes...does it?
+After starting the load test running on each Pod, we would expect to see the cluster size increase from 3 to 4 nodes...does it?
 
 
 ### 3.6 Teardown
