@@ -66,8 +66,7 @@ gcloud beta container clusters create gohttpk8s --zone us-central1-a
 This will generate some warning messages (see below) but these can be ignored
 
 ```
-WARNING: Your Pod address range (`--cluster-ipv4-cidr`) can accommodate at most 1008 node(s). 
-...
+WARNING: Starting in January 2021, clusters will use the Regular release channel by default when ...
 ...
 ```
 
