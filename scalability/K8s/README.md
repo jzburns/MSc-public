@@ -257,7 +257,9 @@ This make take a few minutes to take effect.
 
 ### 3.4 Starting the load test
 
-We have 3 Pods runningn with our workload, so we can bring up the browser, using 3 different windows and some icognito sessions, and start the load test running on 3 confirmed instances
+We have 3 Pods running our workload, so we can bring up the browser, using 3 different windows and some icognito sessions, and start the load test running on 3 confirmed instances. 
+
+***It is important that when we start a load test that we get a confirmation message on the web page***
 
 ### 3.5 Cluster expands
 
