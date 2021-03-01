@@ -192,7 +192,7 @@ We are now finished with the static cluster - so let's teardown
 gcloud beta container clusters delete gohttpk8s  --zone us-central1-a
 ```
 
-## Lab Part 3
+## Lab Part 3 Dynamic clusters
 
 Static clusters do not scale in our out. In order dynamically resize our cluster we need two additional steps:
 
