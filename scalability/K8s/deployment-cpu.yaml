@@ -16,5 +16,5 @@ spec:
       - name: gohttpserver
         image: docker.io/tudjburns/go-http:v3
         resources:
-          limits:
+          requests:
             cpu: 300m
