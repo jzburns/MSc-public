@@ -176,6 +176,8 @@ Of course, the command line interface to redis is very inconvenient. It is quite
 
 So lets look at a more realistic example using python3 bindings to implement pub/sub:
 
+For this exercise we will need two ssh sessions open.
+
 First we do a little bit of setup:
 
 ```
@@ -224,6 +226,40 @@ while not msg:
 
 print("News just in...")
 ```
+
+Copy this file and place it into a file called ``redis-pubsub.py``. Then start it running by issuing this command:
+
+```
+ python3 redis-pubsub.py
+```
+
+it will enter a loop, printing out:
+```
+No news Yet
+No news Yet
+No news Yet
+No news Yet
+No news Yet
+No news Yet
+No news Yet
+No news Yet
+No news Yet
+No news Yet
+```
+
+Now, in the second ssh, attach to the redis cli and publish a message to the redis topic ``redis_news``. What do you see?
+
+### 4.1 Teardown
+
+Don't forget to delete your resources:
+
+```
+gcloud redis instances delete redis-test --region=us-central1
+gcloud compute instances delete redis-instance --zone=us-central1-a
+```
+
+
+
 
 
 
