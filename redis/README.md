@@ -95,7 +95,7 @@ redis> GET mykey
 
 ### 2.2 Hash values in the cachje
 
-We can store a map of values using the ``HMSET`` 
+We can store a hash of values using the ``HMSET`` 
 
 ```
 redis> HSET myhash field1 "Hello" field2 "World"
@@ -108,4 +108,19 @@ redis>
 ```
 Does this seem familiar? Yes - it resembles JSON k-v data.
 
+A slightly more ambitious hash uses the command ``HGETALL``:
+
+```
+10.0.178.107:6379> HSET tutorialspoint name "redis tutorial"  description "redis basic commands for caching" likes 20 visitors 23000
+OK
+10.0.178.107:6379> HGETALL tutorialspoint
+1) "name"
+2) "redis tutorial"
+3) "description"
+4) "redis basic commands for caching"
+5) "likes"
+6) "20"
+7) "visitors"
+8) "23000"
+```
 
