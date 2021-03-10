@@ -152,9 +152,16 @@ In our first (original) ssh session, lets send a message on the ``msgs`` topic
  PUBLISH msgs "Please log off now the system is shutting down..."
  ```
  
+### 2.4 Pattern-matching subscriptions
  
+The Redis Pub/Sub implementation supports pattern matching. Clients may subscribe to glob-style patterns in order to receive all the messages sent to channel names matching a given pattern.
 
+For instance:
 
+```
+PSUBSCRIBE news.*
+```
 
+How does this compare to google cloud pubsub?
 
 
