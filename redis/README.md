@@ -73,6 +73,8 @@ redis-cli -h 10.190.84.108 -p 6379
 
 ## Part 2: Basic interaction with the cache
 
+### 2.1 Basic key value 
+
 Connect to redis on the command line and try out these commands:
 
 ```
@@ -91,5 +93,19 @@ redis> GET mykey
 "Hello World"
 ```
 
+### 2.2 Hash values in the cachje
+
+We can store a map of values using the ``HMSET`` 
+
+```
+redis> HSET myhash field1 "Hello" field2 "World"
+"OK"
+redis> HGET myhash field1
+"Hello"
+redis> HGET myhash field2
+"World"
+redis> 
+```
+Does this seem familiar? Yes - it resembles JSON k-v data.
 
 
