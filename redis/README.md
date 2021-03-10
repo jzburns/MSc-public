@@ -29,7 +29,7 @@ gcloud redis instances create redis-test \
 (This takes a few minutes)
 Now we have a redis VM client and a redis managed service. Take a note of the IP address, we will use this below
 
-## Describe the redis instance
+### 1.3 Describe the redis instance
 
 ```
 gcloud redis instances describe redis-test --region=us-central1
@@ -56,10 +56,18 @@ tier: STANDARD_HA
 transitEncryptionMode: DISABLE
 ```
 
-## Connect to redis from our VM
+### 1.4 Connect to redis from our VM
 
 From the VM SSH session, lets have a look at a simple connection to redis
 
 ```
 redis-cli -h <IP-addr> -p 6379
 ```
+
+and you should see the redis command line interface:
+
+```
+redis-cli -h 10.190.84.108 -p 6379
+10.190.84.108:6379>
+11.```
+12.
