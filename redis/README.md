@@ -164,4 +164,11 @@ PSUBSCRIBE news.*
 
 How does this compare to google cloud pubsub?
 
+### 3.1 Lab Exercise
+
+Add one more ssh session now and implement a 2:1 topology then a 1:2 topology [following the image shown here](https://cloud.google.com/pubsub/images/many-to-many.svg) 
+
+
+
+
 
