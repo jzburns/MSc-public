@@ -70,3 +70,26 @@ and you should see the redis command line interface:
 redis-cli -h 10.190.84.108 -p 6379
 10.190.84.108:6379>
 ```
+
+## Part 2: Basic interaction with the cache
+
+Connect to redis on the command line and try out these commands:
+
+```
+redis> EXISTS mykey
+```
+- what do we note?
+
+These caches are key-value pairs. Lets see a simple operation on the cache - appending data to a key
+
+```
+redis> APPEND mykey "Hello"
+(integer) 5
+redis> APPEND mykey " World"
+(integer) 11
+redis> GET mykey
+"Hello World"
+```
+
+
+
