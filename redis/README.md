@@ -164,9 +164,25 @@ PSUBSCRIBE news.*
 
 How does this compare to google cloud pubsub?
 
-### 3.1 Lab Exercise
+### 3.1 Lab Exercise 1 (10 mins)
 
+This exercise is in two parts - a 2:1 pubsub and a 1:2 pubsub
 Add one more ssh session now and implement a 2:1 topology then a 1:2 topology [following the image shown here](https://cloud.google.com/pubsub/images/many-to-many.svg) 
+Does it work?
+
+### 3.2 Lab Exercise 2 (10 mins)
+
+Of course, the command line interface to redis is very inconvenient. It is quite useful for prototyping but in reality we would never deploy a solution using it. We need to use a client library in python or javascript for example.
+
+So lets look at a more realistic example using python3 bindings to implement pub/sub:
+
+First, git clone this repository:
+
+
+
+
+
+
 
 
 
