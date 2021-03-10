@@ -93,7 +93,7 @@ redis> GET mykey
 "Hello World"
 ```
 
-### 2.2 Hash values in the cachje
+### 2.2 Hash values in the cache
 
 We can store a hash of values using the ``HMSET`` 
 
@@ -123,4 +123,38 @@ OK
 7) "visitors"
 8) "23000"
 ```
+
+### 2.3 Using redis for PubSub
+
+Remeber the gcp pubsub we studied earlier? Redis can also be used, just like kafka, as a fast pubsub infrastructure. For this section we will connect to our VM using two ssh clients (so, start another one running)
+
+As you know, we need one publisher and one or more subscribers.
+
+In our first (original) ssh session, lets send a message on the ``msgs`` topic
+
+```
+ PUBLISH msgs "Please log off now the system is shutting down..."
+ ```
+ 
+ now, on our second ssh session, we will connect to redis and consume the topic message:
+ 
+ ```
+ subscribe msgs
+ ```
+ 
+ Does it work now?
+ 
+ Do you notice anything here? ... any comments?
+ 
+ Lets send another message:
+ 
+   ```
+ PUBLISH msgs "Please log off now the system is shutting down..."
+ ```
+ 
+ 
+
+
+
+
 
