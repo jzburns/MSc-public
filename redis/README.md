@@ -176,7 +176,55 @@ Of course, the command line interface to redis is very inconvenient. It is quite
 
 So lets look at a more realistic example using python3 bindings to implement pub/sub:
 
-First, git clone this repository:
+First we do a little bit of setup:
+
+```
+sudo apt install python3-pip
+```
+
+This will run general updates so will take a minute or two
+
+```
+pip3 install redis
+```
+
+so now we have the redis python3 bindings. Let's check out this simple python3 script:
+
+```
+import redis
+import time
+
+## this the redis host IP address here
+redis_ip = "10.54.116.12"
+r = redis.Redis(host=redis_ip, port=6379, db=0)
+
+## lets see how to pub/sub
+## lets sub first:
+redis_news_subscriber = r.pubsub()
+
+msg = False
+
+## call back to process the message
+def redis_news_handler(message):
+        print ('REDIS news handler: ', message['data'])
+        global msg
+        msg = True
+
+## now we register a call back to 
+# subscribe to the redis news channel
+redis_news_subscriber.subscribe(**{'redis_news': redis_news_handler} )
+
+## now we sync - wait
+## for the news message
+while not msg:
+        ## this is our sync point
+        print("No news Yet")
+        redis_news_subscriber.get_message()
+        time.sleep(1)
+
+print("News just in...")
+```
+
 
 
 
