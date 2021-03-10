@@ -69,5 +69,4 @@ and you should see the redis command line interface:
 ```
 redis-cli -h 10.190.84.108 -p 6379
 10.190.84.108:6379>
-11.```
-12.
+```
