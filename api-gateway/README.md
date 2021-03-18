@@ -148,3 +148,44 @@ gcloud api-gateway api-configs create helloapiconfig \
   --backend-auth-service-account=749635659654-compute@developer.gserviceaccount.com
 ```
 This takes a few minutes...
+
+### 2.5 Describe the Ser
+
+We can now describe the API gateway:
+
+```
+gcloud api-gateway api-configs describe helloapiconfig 
+--api=helloapi \
+--project=it-quality-attributes-302610 
+```
+(be sure to replace ``it-quality-attributes-302610`` with your project ID).
+
+this should yield the following information
+
+```
+createTime: '2021-03-18T19:18:34.254304912Z'
+displayName: helloapiconfig
+gatewayServiceAccount: projects/-/serviceAccounts/749635659654-compute@developer.gserviceaccount.com
+name: projects/749635659654/locations/global/apis/helloapi/configs/helloapiconfig
+serviceConfigId: helloapiconfig-12giv0bogvdnu
+state: ACTIVE
+updateTime: '2021-03-18T19:21:30.750688883Z
+```
+
+
+### 2.6 Enable the API
+
+Once the create is finished we can enable the API gateway now:
+
+```
+gcloud services enable API_ID-HASH.apigateway.PROJECT_ID.cloud.goog
+```
+Where ``API_ID-HASH`` comes from the ``serviceConfigId`` field above, and as usual, your ``PROJECT_ID``
+
+For example, my command is:
+
+```
+gcloud services enable helloapi-1wcgcrprvgx6q.apigateway.it-quality-attributes-302610.cloud.goog
+```
+
+
