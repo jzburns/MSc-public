@@ -138,9 +138,6 @@ The field ``API_DEFINITION`` specifies the name of the OpenAPI spec containing t
 ```
 gcloud api-gateway api-configs create gcloud api-gateway api-configs create openapi2-functions.yaml \
   --api=helloapi --openapi-spec=helloapi-config \
-  --project=it-quality-attributes-302610 --backend-auth-service-account=749635659654-compute@developer.gserviceaccount.com \
+  --project=it-quality-attributes-302610 \
+  --backend-auth-service-account=749635659654-compute@developer.gserviceaccount.com \
 ```
-
-
-
-
