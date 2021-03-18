@@ -7,6 +7,8 @@
 3. To design and deploy an OpenAPI config into the API project
 4. To test and validate the API gateway behaviour
 
+## Part 1
+
 ### 1.1 Creating an API
 
 In this example we will use the a set of HTTP cloud functions to provide an API that a mbiled client can call. Obviouslly, the purpose is to avoid the mobile client havingn to navigate and co-ordinate these functions itself.   
@@ -42,9 +44,10 @@ The gcloud command-line tool takes many options, including those described in th
 
 But obviously we did not use ``--async`` so we would expect the client to block waiting for the results of the API call.
 
-## 2.1 Creating an API config
+## Part 2
 
-### API config ID requirements
+### 2.1 API config ID requirements
+
 Many of the ``gcloud`` commands shown below require you to specify the ID of the API config, in the form: ``CONFIG_ID``. API Gateway enforces the following requirements for the API config ID:
 
 1. Must have a maximum length of 63 characters.
@@ -52,7 +55,7 @@ Many of the ``gcloud`` commands shown below require you to specify the ID of the
 1. Must not start with a dash.
 1. Must not contain an underscore.
 
-### Anatomy of an OpenAPI config
+### 2.2 Anatomy of an OpenAPI config
 
 First, lets look at an OpenAPI config that uses a cloud function we have seen previously:
 
@@ -80,3 +83,37 @@ paths:
           schema:
             type: string
 ```
+### 2.3 Deploy the backend
+
+Do you remember this?
+
+```
+/**
+ * HTTP Cloud Function.
+ * This function is exported by index.js, and is executed when
+ * you make an HTTP request to the deployed function's endpoint.
+ *
+ * @param {Object} req Cloud Function request context.
+ *                     More info: https://expressjs.com/en/api.html#req
+ * @param {Object} res Cloud Function response context.
+ *                     More info: https://expressjs.com/en/api.html#res
+ */
+
+exports.helloGET = (req, res) => {
+  res.send('Hello World!');
+};
+```
+#### Exercise - 5 minutes
+
+Take 5 minutes to locate and deploy ``helloGET`` - we did this already in a previous lab
+
+### 2.3 Save and Upload
+
+1. To upload this OpenAPI spec and create an API config using the gcloud command line tool:
+1. From the command line, create a new file named ``openapi2-functions.yaml``
+1. Copy and paste the contents of the OpenAPI spec shown above into the newly created file.
+
+Edit the file as follows:
+
+1. In the title field, replace API_ID with the name of your API and replace optional-string with a brief description of your choosing. 
+1. In the address field, replace ``GCP_REGION`` with the ``GCP`` region of the deployed function and ``PROJECT_ID`` with the name of your Google Cloud project.
