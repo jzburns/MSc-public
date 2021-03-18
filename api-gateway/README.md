@@ -147,3 +147,4 @@ gcloud api-gateway api-configs create helloapiconfig \
   --project=it-quality-attributes-302610 \
   --backend-auth-service-account=749635659654-compute@developer.gserviceaccount.com
 ```
+This takes a few minutes...
