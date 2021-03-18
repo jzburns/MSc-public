@@ -124,8 +124,10 @@ Now that we have deployed our cloud function and configured our API gateway conf
 
 ```
 gcloud api-gateway api-configs create gcloud api-gateway api-configs create CONFIG_ID \
-  --api=API_ID --openapi-spec=API_DEFINITION \
-  --project=PROJECT_ID --backend-auth-service-account=SERVICE_ACCOUNT_EMAILCONFIG_ID \
+  --api=API_ID 
+  --openapi-spec=API_DEFINITION \
+  --project=PROJECT_ID 
+  --backend-auth-service-account=SERVICE_ACCOUNT_EMAILCONFIG_ID \
 ```
 1. ``API_DEFINITION`` is the name of the yaml file
 2. ``SERVICE_ACCOUNT_EMAILCONFIG_ID`` field [can be found by visiting the GCP IAM page](https://console.cloud.google.com/iam-admin) )(see image below)
@@ -135,11 +137,12 @@ gcloud api-gateway api-configs create gcloud api-gateway api-configs create CONF
 
 You can see in the above screenshot that my ID is based on the ``Compute Engine default service account`` column: ``749635659654-compute@developer.gserviceaccount.com``
 
-The field ``API_DEFINITION`` specifies the name of the OpenAPI spec containing the API definition. So choose whatever name you like (I will use ``helloapi-config``). So now, my gateway config command looks like this:
+So now, my gateway config command looks like this:
 
 ```
-gcloud api-gateway api-configs create openapi2-functions.yaml \
-  --api=helloapi --openapi-spec=helloapi-config \
+gcloud api-gateway api-configs create  \
+  --api=helloapi \
+  --openapi-spec=openapi2-functions.yaml \
   --project=it-quality-attributes-302610 \
   --backend-auth-service-account=749635659654-compute@developer.gserviceaccount.com \
 ```
