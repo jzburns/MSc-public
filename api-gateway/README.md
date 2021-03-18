@@ -107,7 +107,7 @@ exports.helloGET = (req, res) => {
 
 Take 5 minutes to locate and deploy ``helloGET`` - we did this already in a previous lab
 
-### 2.3 Save and Upload
+### 2.3 Save and Configure
 
 1. To upload this OpenAPI spec and create an API config using the gcloud command line tool:
 1. From the command line, create a new file named ``openapi2-functions.yaml``
@@ -117,3 +117,22 @@ Edit the file as follows:
 
 1. In the title field, replace API_ID with the name of your API and replace optional-string with a brief description of your choosing. 
 1. In the address field, replace ``GCP_REGION`` with the ``GCP`` region of the deployed function and ``PROJECT_ID`` with the name of your Google Cloud project.
+
+### 2.4 Upload this file
+
+Now that we have deployed our cloud function and configured our API gateway config file, we need to submit it to the management service. To do this correctly we need some additional parameters. In particular, we need to know the ``service account`` email address that is used to create the API.
+
+```
+gcloud api-gateway api-configs create gcloud api-gateway api-configs create CONFIG_ID \
+  --api=API_ID --openapi-spec=API_DEFINITION \
+  --project=PROJECT_ID --backend-auth-service-account=SERVICE_ACCOUNT_EMAILCONFIG_ID \
+  ```
+Typically, the ``SERVICE_ACCOUNT_EMAILCONFIG_ID`` field [can be found by visiting the GCP IAM page](https://console.cloud.google.com/iam-admin) 
+
+![image](https://user-images.githubusercontent.com/3818964/111679672-52399f00-8819-11eb-9e13-4457b4d8ea71.png)
+
+You can see in the above screenshot that my ID is based on the ``Compute Engine default service account`` column: ``749635659654-compute@developer.gserviceaccount.com``
+
+
+
+
