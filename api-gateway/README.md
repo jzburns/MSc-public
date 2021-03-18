@@ -212,6 +212,14 @@ gcloud api-gateway gateways create hello-gateway \
   --api-config=helloapiconfig \
   --location=us-central1 --project=it-quality-attributes-302610
   ```
- 
-  
+
+This usually takes a few minutes...
+
+### 2.8 Describe the gateway
+
+```
+gcloud api-gateway gateways describe hello-gateway \
+  --location=us-central1 --project=it-quality-attributes-302610
+  ```
+
   
