@@ -222,4 +222,35 @@ gcloud api-gateway gateways describe hello-gateway \
   --location=us-central1 --project=it-quality-attributes-302610
   ```
 
-  
+This produces output like this:
+
+```
+apiConfig: projects/749635659654/locations/global/apis/helloapi/configs/helloapiconfig
+createTime: '2021-03-18T20:00:43.518978544Z'
+defaultHostname: hello-gateway-9kdlpsw6.uc.gateway.dev
+displayName: hello-gateway
+name: projects/it-quality-attributes-302610/locations/us-central1/gateways/hello-gateway
+state: ACTIVE
+updateTime: '2021-03-18T20:06:25.825862743Z'
+```
+
+### 2.9 Test
+
+We can use curl and ``defaultHostname`` to test our API gateway:
+
+```
+curl https://hello-gateway-9kdlpsw6.uc.gateway.dev/hello
+```
+
+and you should see:
+```
+Your IP address is: 35.195.80.208,107
+```
+
+or whatever was in the original ``helloGET`` function (may it is just "Hello World")
+
+## Part 3
+
+Now we want to protect our API by using an API key. Let's do this:
+
+
