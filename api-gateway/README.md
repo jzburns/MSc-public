@@ -129,9 +129,10 @@ gcloud api-gateway api-configs create gcloud api-gateway api-configs create CONF
   --project=PROJECT_ID 
   --backend-auth-service-account=SERVICE_ACCOUNT_EMAILCONFIG_ID \
 ```
-1. ``API_DEFINITION`` is the name of the yaml file
-2. ``SERVICE_ACCOUNT_EMAILCONFIG_ID`` field [can be found by visiting the GCP IAM page](https://console.cloud.google.com/iam-admin) )(see image below)
-3. ``CONFIG_ID`` is the new name for the configuration (we will use ``helloapiconfig``)
+1. ``API_ID``: the name for your API config to be attached to (=``helloapi``)
+2. ``API_DEFINITION``: the name of the yaml file (=``openapi2-functions.yaml``)
+3. ``SERVICE_ACCOUNT_EMAILCONFIG_ID``: this field [can be found by visiting the GCP IAM page](https://console.cloud.google.com/iam-admin) )(see image below)
+4. ``CONFIG_ID``: the new name for the configuration (=``helloapiconfig``)
 
 ![image](https://user-images.githubusercontent.com/3818964/111679672-52399f00-8819-11eb-9e13-4457b4d8ea71.png)
 
