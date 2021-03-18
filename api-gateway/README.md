@@ -1,4 +1,11 @@
-## API Gateways
+# API Gateways
+
+## Learning outcomes
+
+1. To create an API project
+2. To deploy a set of cloud functions that act as the members of the API
+3. To design and deploy an OpenAPI config into the API project
+4. To test and validate the API gateway behaviour
 
 ### 1.1 Creating an API
 
