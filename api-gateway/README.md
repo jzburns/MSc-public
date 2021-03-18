@@ -149,7 +149,7 @@ gcloud api-gateway api-configs create helloapiconfig \
 ```
 This takes a few minutes...
 
-### 2.5 Describe the Ser
+### 2.5 Describe the Service
 
 We can now describe the API gateway:
 
@@ -188,4 +188,30 @@ For example, my command is:
 gcloud services enable helloapi-1wcgcrprvgx6q.apigateway.it-quality-attributes-302610.cloud.goog
 ```
 
+### 2.7 Creating a gateway
 
+Now deploy the API config on a gateway. Deploying an API config on a gateway defines an external URL that API clients can use to access your API.
+
+Run the following command to deploy the API config you just created to API Gateway:
+
+```
+gcloud api-gateway gateways create GATEWAY_ID \
+  --api=API_ID --api-config=CONFIG_ID \
+  --location=GCP_REGION --project=PROJECT_ID
+  ```
+1. ``GATEWAY_ID`` specifies the name of the gateway.
+1. ``API_ID`` specifies the name of the API Gateway API associated with this gateway.
+1. ``CONFIG_ID`` specifies the name of the API config deployed to the gateway.
+1. ``GCP_REGION`` is the Google Cloud region for the deployed gateway.
+  
+For me:
+
+```
+gcloud api-gateway gateways create my-gateway \
+  --api=helloapi \
+  --api-config=helloapiconfig \
+  --location=us-central1 --project=it-quality-attributes-302610
+  ```
+ 
+  
+  
