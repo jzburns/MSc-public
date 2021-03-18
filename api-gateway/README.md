@@ -52,4 +52,31 @@ Many of the ``gcloud`` commands shown below require you to specify the ID of the
 1. Must not start with a dash.
 1. Must not contain an underscore.
 
+### Anatomy of an OpenAPI config
 
+First, lets look at an OpenAPI config that uses a cloud function we have seen previously:
+
+```
+# openapi2-functions.yaml
+swagger: '2.0'
+info:
+  title: API_ID optional-string
+  description: Sample API on API Gateway with a Google Cloud Functions backend
+  version: 1.0.0
+schemes:
+  - https
+produces:
+  - application/json
+paths:
+  /hello:
+    get:
+      summary: Greet a user
+      operationId: hello
+      x-google-backend:
+        address: https://GCP_REGION-PROJECT_ID.cloudfunctions.net/helloGET
+      responses:
+        '200':
+          description: A successful response
+          schema:
+            type: string
+```
