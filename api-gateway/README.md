@@ -13,10 +13,10 @@
 
 In this example we will use the a set of HTTP cloud functions to provide an API that a mbiled client can call. Obviouslly, the purpose is to avoid the mobile client havingn to navigate and co-ordinate these functions itself.   
 
-To begin, we create an API (called ``WeatherAPI`` attached to our project)
+To begin, we create an API (called ``helloapi`` attached to our project)
 
 ```
- gcloud api-gateway apis create weatherapi --project=PROJECT_ID
+ gcloud api-gateway apis create helloapi --project=PROJECT_ID
 ```
 
 This simply serves as the holdOn successful completion, you can use the following command to view details about the new APIing area for the API - the configuration of the API comes later.
@@ -25,15 +25,15 @@ On successful completion, you can use the following command to view details abou
 
 ### 1.2 Describing the API
 ```
-gcloud api-gateway apis describe weatherapi --project=PROJECT_ID
+gcloud api-gateway apis describe helloapi --project=PROJECT_ID
 ```
 This command returns something the following:
 
 ```
 createTime: '2021-03-18T10:20:02.620875731Z'
-displayName: weatherapi
+displayName: helloapi
 managedService: weatherapi-12k4oabzjy9ze.apigateway.it-quality-attributes-302610.cloud.goog
-name: projects/it-quality-attributes-302610/locations/global/apis/weatherapi
+name: projects/it-quality-attributes-302610/locations/global/apis/helloapi
 state: ACTIVE
 updateTime: '2021-03-18T10:21:40.272559300Z'
 ```
@@ -126,12 +126,20 @@ Now that we have deployed our cloud function and configured our API gateway conf
 gcloud api-gateway api-configs create gcloud api-gateway api-configs create CONFIG_ID \
   --api=API_ID --openapi-spec=API_DEFINITION \
   --project=PROJECT_ID --backend-auth-service-account=SERVICE_ACCOUNT_EMAILCONFIG_ID \
-  ```
+```
 Typically, the ``SERVICE_ACCOUNT_EMAILCONFIG_ID`` field [can be found by visiting the GCP IAM page](https://console.cloud.google.com/iam-admin) 
 
 ![image](https://user-images.githubusercontent.com/3818964/111679672-52399f00-8819-11eb-9e13-4457b4d8ea71.png)
 
 You can see in the above screenshot that my ID is based on the ``Compute Engine default service account`` column: ``749635659654-compute@developer.gserviceaccount.com``
+
+The field ``API_DEFINITION`` specifies the name of the OpenAPI spec containing the API definition. So choose whatever name you like (I will use ``helloapi-config``). So now, my gateway config command looks like this:
+
+```
+gcloud api-gateway api-configs create gcloud api-gateway api-configs create openapi2-functions.yaml \
+  --api=helloapi --openapi-spec=helloapi-config \
+  --project=it-quality-attributes-302610 --backend-auth-service-account=749635659654-compute@developer.gserviceaccount.com \
+```
 
 
 
