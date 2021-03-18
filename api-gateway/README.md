@@ -140,9 +140,9 @@ You can see in the above screenshot that my ID is based on the ``Compute Engine 
 So now, my gateway config command looks like this:
 
 ```
-gcloud api-gateway api-configs create  \
+gcloud api-gateway api-configs create helloapiconfig \
   --api=helloapi \
   --openapi-spec=openapi2-functions.yaml \
   --project=it-quality-attributes-302610 \
-  --backend-auth-service-account=749635659654-compute@developer.gserviceaccount.com \
+  --backend-auth-service-account=749635659654-compute@developer.gserviceaccount.com
 ```
