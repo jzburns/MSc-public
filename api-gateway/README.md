@@ -207,7 +207,7 @@ gcloud api-gateway gateways create GATEWAY_ID \
 For me:
 
 ```
-gcloud api-gateway gateways create my-gateway \
+gcloud api-gateway gateways create hello-gateway \
   --api=helloapi \
   --api-config=helloapiconfig \
   --location=us-central1 --project=it-quality-attributes-302610
