@@ -95,7 +95,7 @@ Lets look at an OpenAPI config that uses the ``helloGET`` cloud function we have
 # openapi2-functions.yaml
 swagger: '2.0'
 info:
-  title: API_ID optional-string
+  title: helloapi a simple API test
   description: Sample API on API Gateway with a Google Cloud Functions backend
   version: 1.0.0
 schemes:
@@ -122,8 +122,7 @@ paths:
 
 Edit the file as follows:
 
-1. In the title field, replace API_ID with the name of your API and replace optional-string with a brief description of your choosing. 
-1. In the address field, replace ``GCP_REGION`` with the ``GCP`` region of the deployed function and ``PROJECT_ID`` with the name of your Google Cloud project.
+1. In the address field, replace ``GCP_REGION`` with the ``GCP`` region of the deployed function and ``PROJECT_ID`` with the name of your Google Cloud project. You can get this information from the cloud function deploy return message.
 
 ### 2.4 Upload this file
 
