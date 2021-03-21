@@ -244,6 +244,55 @@ or whatever was in the original ``helloGET`` function (may it is just "Hello Wor
 
 ## Part 3
 
-Now we want to protect our API by using an API key. Let's do this:
+Now we want to protect our API by using an API key. To do this we specify the use of an API key in our yaml under ``paths/hello``
 
+```
+security:
+- api_key: []
 
+```
+
+and then we add a new section
+
+```
+    securityDefinitions:
+      # This section configures basic authentication with an API key.
+      api_key:
+        type: "apiKey"
+        name: "key"
+        in: "query"
+```        
+note that the key is to be passed in using  the ``query`` and the name is ``key``
+
+```
+# openapi2-functions.yaml
+swagger: '2.0'
+info:
+  title: helloapi a simple API test
+  description: Sample API on API Gateway with a Google Cloud Functions backend
+  version: 1.0.0
+schemes:
+  - https
+produces:
+  - application/json
+paths:
+  /hello:
+    get:
+      summary: Greet a user
+      operationId: hello
+      x-google-backend:
+        address: https://GCP_REGION-PROJECT_ID.cloudfunctions.net/helloGET
+        security:
+          - api_key: []        
+      responses:
+        '200':
+          description: A successful response
+          schema:
+            type: string
+    securityDefinitions:
+      # This section configures basic authentication with an API key.
+      api_key:
+        type: "apiKey"
+        name: "key"
+        in: "query"
+```
