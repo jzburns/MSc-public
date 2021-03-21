@@ -19,9 +19,15 @@ To begin, we create an API (called ``helloapi`` attached to our project)
  gcloud api-gateway apis create helloapi --project=PROJECT_ID
 ```
 
-This simply serves as the holdOn successful completion, you can use the following command to view details about the new APIing area for the API - the configuration of the API comes later.
+You will need to confirm this and enable the API. 
 
-On successful completion, you can use the following command to view details about the new API:
+``
+ Would you like to enable and retry (this will take a few minutes)? 
+ (y/N)?  y
+ ``
+This can take a few minutes.
+
+On successful completion, we can go on to describe the API:
 
 ### 1.2 Describing the API
 ```
