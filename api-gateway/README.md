@@ -289,10 +289,10 @@ paths:
           description: A successful response
           schema:
             type: string
-    securityDefinitions:
-      # This section configures basic authentication with an API key.
-      api_key:
-        type: "apiKey"
-        name: "key"
-        in: "query"
+securityDefinitions:
+# This section configures basic authentication with an API key.
+  api_key:
+    type: "apiKey"
+    name: "key"
+    in: "query"
 ```
