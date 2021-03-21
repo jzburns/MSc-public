@@ -91,7 +91,7 @@ paths:
 ```
 ### 2.3 Deploy the backend
 
-Do you remember this?
+The cloud function is probably not still deployed...but this is the one we want:
 
 ```
 /**
@@ -109,6 +109,8 @@ exports.helloGET = (req, res) => {
   res.send('Hello World!');
 };
 ```
+Do you remember this?
+
 #### Exercise - 5 minutes
 
 Take 5 minutes to locate and deploy ``helloGET`` - we did this already in a previous lab
