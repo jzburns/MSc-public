@@ -177,24 +177,7 @@ serviceConfigId: helloapiconfig-12giv0bogvdnu
 state: ACTIVE
 updateTime: '2021-03-18T19:21:30.750688883Z
 ```
-
-
-### 2.6 Enable the API
-
-Once the create is finished we can enable the API gateway now:
-
-```
-gcloud services enable API_ID-HASH.apigateway.PROJECT_ID.cloud.goog
-```
-Where ``API_ID-HASH`` comes from the ``serviceConfigId`` field above, and as usual, your ``PROJECT_ID``
-
-For example, my command is:
-
-```
-gcloud services enable helloapi-1wcgcrprvgx6q.apigateway.it-quality-attributes-302610.cloud.goog
-```
-
-### 2.7 Creating a gateway
+### 2.6 Creating a gateway
 
 Now deploy the API config on a gateway. Deploying an API config on a gateway defines an external URL that API clients can use to access your API.
 
@@ -216,17 +199,21 @@ For me:
 gcloud api-gateway gateways create hello-gateway \
   --api=helloapi \
   --api-config=helloapiconfig \
-  --location=us-central1 --project=it-quality-attributes-302610
+  --location=us-central1 \
+  --project=it-quality-attributes-302610
   ```
+(be sure to replace ``it-quality-attributes-302610`` with your project ID).
 
 This usually takes a few minutes...
 
-### 2.8 Describe the gateway
+### 2.7 Describe the gateway
 
 ```
 gcloud api-gateway gateways describe hello-gateway \
-  --location=us-central1 --project=it-quality-attributes-302610
+  --location=us-central1 \
+  --project=it-quality-attributes-302610
   ```
+(be sure to replace ``it-quality-attributes-302610`` with your project ID).
 
 This produces output like this:
 
@@ -240,7 +227,7 @@ state: ACTIVE
 updateTime: '2021-03-18T20:06:25.825862743Z'
 ```
 
-### 2.9 Test
+### 2.8 Test
 
 We can use curl and ``defaultHostname`` to test our API gateway:
 
