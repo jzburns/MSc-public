@@ -244,6 +244,7 @@ or whatever was in the original ``helloGET`` function (may it is just "Hello Wor
 
 ## Part 3
 
+### 3.1 Secure Changes
 Now we want to protect our API by using an API key. To do this we specify the use of an API key in our yaml under ``paths/hello``
 
 ```
@@ -296,3 +297,52 @@ securityDefinitions:
     name: "key"
     in: "query"
 ```
+
+### 3.2 Download and configure
+
+Download and save this file as ``openapi2-functions-secure.yaml``. Then we create a new configuration:
+
+```
+gcloud api-gateway api-configs create helloapiconfig-secure \
+  --api=helloapi \
+  --openapi-spec=openapi2-functions-secure.yaml \
+  --project=it-quality-attributes-302610 \
+  --backend-auth-service-account=749635659654-compute@developer.gserviceaccount.com
+```
+### 3.3 Create a new secure gateway
+```
+gcloud api-gateway gateways create hello-gateway-secure \
+  --api=helloapi \
+  --api-config=helloapiconfig-secure \
+  --location=us-central1 \
+  --project=it-quality-attributes-302610
+  ```
+ 
+ ### 3.4 Describe the gateway and call it
+
+```
+gcloud api-gateway gateways describe hello-gateway-secure \
+  --location=us-central1 \
+  --project=it-quality-attributes-302610
+  ```
+ 
+ and we see our security error:
+ 
+ ```
+curl https://hello-gateway-secure-8xsgpja5.uc.gateway.dev/hello
+{"message":"UNAUTHENTICATED:Method doesn't allow unregistered callers (callers without established identity). 
+Please use API Key or other form of API consumer identity to call this API.","code":401}
+```
+
+### 3.5 Get your API key and call again
+
+```
+https://console.cloud.google.com/apis/credentials
+```
+
+click create credentials and use them for your function, eg:
+
+```
+curl https://hello-gateway-secure-8xsgpja5.uc.gateway.dev/hello?key="AIzaSyD4q64dvKTHXJXKggZfwwkTrbKN8Adn948"
+```
+
