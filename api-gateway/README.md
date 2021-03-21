@@ -343,6 +343,6 @@ https://console.cloud.google.com/apis/credentials
 click create credentials and use them for your function, eg:
 
 ```
-curl https://hello-gateway-secure-8xsgpja5.uc.gateway.dev/hello?key="AIzaSyD4q64dvKTHXJXKggZfwwkTrbKN8Adn948"
+curl https://hello-gateway-secure-8xsgpja5.uc.gateway.dev/hello?key="rbKN8AmrbKN8AkTdn948"
 ```
 
