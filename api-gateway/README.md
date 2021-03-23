@@ -244,7 +244,27 @@ or whatever was in the original ``helloGET`` function (may it is just "Hello Wor
 
 ## Part 3
 
-### 3.1 Secure Changes
+Now we want multiple paths in our API gateway: For example, we want to export the cloud function ``helloHttp``.
+
+### 3.1 Lab Exercise (10 mins)
+
+1. deploy the nodejs function ``helloHttp`` from the ``index.js`` file from  2.2
+2. make a copy of ``openapi2-functions.yaml`` - call it ``openapi2-functions-multi.yaml``
+3. add a new path (call it `hellohttp``)
+4. map this path to the ``helloHttp`` cloud function (use the exact same structure as before)
+5. now deploy using this syntax:
+```
+gcloud api-gateway api-configs create helloapiconfig-multi \
+  --api=helloapi \
+  --openapi-spec=openapi2-functions-multi.yaml \
+  --project=it-quality-attributes-302610 \
+  --backend-auth-service-account=749635659654-compute@developer.gserviceaccount.com
+```
+6. Test this and see if you can now call two paths of your API gateway.
+
+## Part 4
+
+### 4.1 Secure Changes
 Now we want to protect our API by using an API key. To do this we specify the use of an API key in our yaml under ``paths/hello``
 
 ```
@@ -298,7 +318,7 @@ securityDefinitions:
     in: "query"
 ```
 
-### 3.2 Download and configure
+### 4.2 Download and configure
 
 Download and save this file as ``openapi2-functions-secure.yaml``. Then we create a new configuration:
 
@@ -309,7 +329,7 @@ gcloud api-gateway api-configs create helloapiconfig-secure \
   --project=it-quality-attributes-302610 \
   --backend-auth-service-account=749635659654-compute@developer.gserviceaccount.com
 ```
-### 3.3 Create a new secure gateway
+### 4.3 Create a new secure gateway
 ```
 gcloud api-gateway gateways create hello-gateway-secure \
   --api=helloapi \
@@ -318,7 +338,7 @@ gcloud api-gateway gateways create hello-gateway-secure \
   --project=it-quality-attributes-302610
   ```
  
- ### 3.4 Describe the gateway and call it
+ ### 4.4 Describe the gateway and call it
 
 ```
 gcloud api-gateway gateways describe hello-gateway-secure \
@@ -334,7 +354,7 @@ curl https://hello-gateway-secure-8xsgpja5.uc.gateway.dev/hello
 Please use API Key or other form of API consumer identity to call this API.","code":401}
 ```
 
-### 3.5 Get your API key and call again
+### 4.5 Get your API key and call again
 
 ```
 https://console.cloud.google.com/apis/credentials
