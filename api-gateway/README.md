@@ -160,7 +160,7 @@ This takes a few minutes...
 We can now describe the API gateway:
 
 ```
-gcloud api-gateway api-configs describe helloapiconfig 
+gcloud api-gateway api-configs describe helloapiconfig \
 --api=helloapi \
 --project=it-quality-attributes-302610 
 ```
