@@ -250,7 +250,7 @@ Now we want multiple paths in our API gateway: For example, we want to export th
 
 1. deploy the nodejs function ``helloHttp`` from the ``index.js`` file from  2.2
 2. make a copy of ``openapi2-functions.yaml`` - call it ``openapi2-functions-multi.yaml``
-3. add a new path (call it `hellohttp``)
+3. add a new path (call it ``hellohttp``)
 4. map this path to the ``helloHttp`` cloud function (use the exact same structure as before)
 5. now deploy using this syntax:
 ```
