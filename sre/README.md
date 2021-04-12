@@ -1,14 +1,20 @@
-### Set up steps
+
+### Lab Learning Objectives
+1. To develop a basic Kubernetes liveness probe to assess cluster health
+2. To develop a timeout liveness probe
+3. To develop a shell-script probe
+
+### Part 1: Set up steps
 
 The following instructions are to be issued from your ``gcp`` shell
 
-### Obtain the repo for this class
+### 1.1 Obtain the repo for this class
 ```
 $ git clone https://github.com/jzburns/MSc-public.git
 $ cd MSc-public/sre
 ```
 
-### Compiling the Code - Pushing to the Registry
+### 1.2 Compiling the Code - Pushing to the Registry
 
 The docker code needs to be built and pushed to **your own private google image registry**, as follows:
 
@@ -24,7 +30,7 @@ docker push eu.gcr.io/<YOUR PROJECT ID HERE>/go-http-sre-crash
 **do not proceed until you have this build and push working**
 
 In this directory you will find all the code and ``yaml`` files required.
-### Create the Kubernetes cluster
+### 1.3 Create the Kubernetes cluster
 
 ```
 $ gcloud beta container clusters create gohttpk8s --zone us-central1-a
@@ -63,6 +69,8 @@ spec:
         image: eu.gcr.io/<YOUR PROJECT ID HERE>/go-http-sre-crash
         imagePullPolicy: Always
 ```
+
+### 1.4 Cluster yaml files
 
 Now we apply the ``yaml`` files
 
