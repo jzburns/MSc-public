@@ -33,7 +33,7 @@ In this directory you will find all the code and ``yaml`` files required.
 ### 1.3 Create the Kubernetes cluster
 
 ```
-$ gcloud beta container clusters create gohttpk8s --zone us-central1-a
+$ gcloud beta container clusters create gohttpk8s --zone eu-central3-c
 ```
 This step takes a few minutes. **You may be prompted to enable this service**
 
