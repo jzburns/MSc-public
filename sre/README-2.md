@@ -1,3 +1,7 @@
+## Part 2
+
+### 2.1 Probing the cluster
+
 If you start using Careless Banking you will note a number of issues:
 
 1. Core Dumps - the container exits
@@ -31,6 +35,9 @@ $ kubectl apply -f deployment-crash-probe.yaml
 ```
 Now, after a short while, any  pods registering an HTTP error 500 will be restarted and it should become somewhat less obvious
 
+
+### 2.2 Probing the cluster for cumulative latency problem
+
 Finally, we can address the cumulative latency problem by adjusting our probe for timeouts:
 
 ```
@@ -47,13 +54,13 @@ Finally, we can address the cumulative latency problem by adjusting our probe fo
 ```
 we now attach a timeout condition (1 second). If the pod fails this test, it is restarted. 
 
-### Frequent Restarts
+### 2.3 Frequent Restarts
 A note on frequent restarts: GKE will block traffic to pods that are failing liveness probes very frequently. Care must be taken not to trigger pod restarts too often as this signals a problem with the pod/container and traffic will be blocked.
 
-### Database Not Reachable Error
+### 2.4 Database Not Reachable Error
 
 Finally, this error is a difficult one to deal with as restarting the container does not alleviate the problem. What can we do? 
 
 We should instrument all systems using something like [Prometheus](https://cloud.google.com/monitoring/kubernetes-engine/prometheus). But a little bit of black-box testing and alerts is also possible.
 
-On to the last part of the lab
+Now, on to the last part of the lab
