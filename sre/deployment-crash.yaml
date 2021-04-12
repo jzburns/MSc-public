@@ -14,5 +14,5 @@ spec:
     spec:
       containers:
       - name: gohttpserver
-        image: eu.gcr.io/<YOUR PROJECT ID HERE>/go-http-sre-crash
+        image: eu.gcr.io/it-quality-attributes-302610/go-http-sre-crash
         imagePullPolicy: Always
