@@ -65,7 +65,7 @@ We should instrument all systems using something like [Prometheus](https://cloud
 
 Now, on to the last part of the lab
 
-## Part 3
+## Part 3 - Assignment
 
 # Monitoring Careless Banking
 
