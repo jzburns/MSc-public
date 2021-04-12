@@ -40,7 +40,7 @@ This step takes a few minutes. **You may be prompted to enable this service**
 You may see some warnings like:
 
 ```
-WARNING: Currently VPC-native is not the default mode during cluster creation. In the future, this will become the default mode and can be disabled using `--no-enable-ip-alias` flag. Use `--[no-]enable-ip-alias` flag to suppress this warning.
+WARNING: Currently VPC-native is not the default mode during cluster creation. 
 WARNING: Newly created clusters and node-pools will have node auto-upgrade enabled by default. This can be disabled using the `--no-enable-autoupgrade` flag.
 WARNING: Starting with version 1.18, clusters will have shielded GKE nodes by default.
 WARNING: Your Pod address range (`--cluster-ipv4-cidr`) can accommodate at most 1008 node(s). 
