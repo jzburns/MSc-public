@@ -16,7 +16,7 @@ Unfortunately, 2-4 are more difficult to resolve. To solve item 2. we need to us
 ```
         livenessProbe:
           httpGet:
-            path: /getbalamce
+            path: /getbalance
             port: 8080
             httpHeaders:
             - name: Web-Service-Up
