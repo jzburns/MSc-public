@@ -1,0 +1,31 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+</head>
+    
+<body style="background-color:gray();" onload="getbal()">
+
+<body style="background-color:lightblue;" onload="getbal()">
+	<div class="container">
+    <div class="jumbotron text-center">
+        <img src="https://tudublin.ie/media/website/site-assets/images/tu-dublin-logo.svg"
+             style="height: 100px; width: 100px" align="left">
+        <img src="https://golang.org/lib/godoc/images/go-logo-blue.svg" style="height: 100px; width: 100px"
+             align="right">
+        <h4>Golang Site Reliability Tester</h4>
+        <h4>Intermittent Fault Injection Lab</h4>
+    </div>
+</div>
+<script>
+function getbal(){
+document.getElementById("balance").innerHTML = Math.floor(Math.random() * 1000);
+}
+</script>
+        <h2 align="center">Welcome to Careless Banking<h2>
+        <h2 align="center">(We don't require logins)</h2>
+
+<h2> Your account balance is €: </> <t id="balance"/>
+
+</body>
+</html>
