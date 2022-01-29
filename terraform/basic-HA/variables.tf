@@ -3,7 +3,7 @@
 #######################################################################
 variable "project_id" {
   description = "The project ID to deploy resources into"
-  default   = "epa-flite-2021"
+  default   = "cloudroom-313818"
 }
 
 variable "subnetwork" {
@@ -16,10 +16,16 @@ variable "instance_name" {
   default     = "container-vm-terraform"
 }
 
-variable "zone" {
-  description = "The GCP zone to deploy instances into"
+variable "ha-zone-1" {
+  description = "The GCP HA zone 1 to deploy instances into"
   type        = string
   default     = "europe-west1-c"
+}
+
+variable "ha-zone-2" {
+  description = "The GCP HA zone 2 to deploy instances into"
+  type        = string
+  default     = "europe-west2-b"
 }
 
 variable "client_email" {

@@ -28,11 +28,12 @@ resource "google_compute_instance" "vm" {
   }
 
   network_interface {
-    subnetwork         = var.subnetwork
+    subnetwork = var.subnetwork
     access_config {}
   }
 
-  tags = ["http-server", "https-server"]
+  ## we will add this in later
+  ## tags = ["http-server", "https-server"]
 
   metadata = {
     gce-container-declaration = module.gce-container.metadata_value
