@@ -33,7 +33,7 @@ resource "google_compute_instance" "vm" {
   }
 
   ## we will add this in later
-  ## tags = ["http-server", "https-server"]
+  ## tags = ["http-banking"]
 
   metadata = {
     gce-container-declaration = module.gce-container.metadata_value
@@ -51,4 +51,17 @@ resource "google_compute_instance" "vm" {
       "https://www.googleapis.com/auth/cloud-platform",
     ]
   }
+}
+
+resource "google_compute_firewall" "ingress-banking" {
+  name    = "ingress-banking"
+  network = "default"
+
+  allow {
+    protocol = "tcp"
+    ports    =  ["80"]
+  }
+
+  target_tags = ["http-banking"]
+  source_ranges = ["0.0.0.0/0"]
 }
