@@ -1,0 +1,6 @@
+###############################
+## terraform ignores
+###############################
+.terraform/
+terraform.tfstate  
+terraform.tfstate.backup
