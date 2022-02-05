@@ -3,7 +3,7 @@
 #######################################################################
 variable "project_id" {
   description = "The project ID to deploy resources into"
-  default   = "epa-flite-2021"
+  default   = ""
 }
 
 variable "subnetwork" {

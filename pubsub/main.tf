@@ -23,10 +23,7 @@ resource "google_pubsub_subscription" "pubsub-subs" {
   topic = google_pubsub_topic.pubsub-topic.name
 
   ack_deadline_seconds = 20
-  
-  # in order subscriber
-  enable_message_ordering = true
-  
+   
   labels = {
     activity = "msc-labs"
   }
@@ -39,6 +36,9 @@ resource "google_pubsub_subscription" "pubsub-subs-2" {
   topic = google_pubsub_topic.pubsub-topic.name
 
   ack_deadline_seconds = 20
+
+  # in order subscriber
+  enable_message_ordering = true
 
   labels = {
     activity = "msc-labs"
