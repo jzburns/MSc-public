@@ -8,7 +8,7 @@ resource "google_storage_bucket" "bucket" {
 
 resource "google_storage_bucket_object" "archive" {
   #######################################################################
-  ## this is the code 
+  ## this is the code to be deployed
   #######################################################################
   name   = "index.zip"
   bucket = google_storage_bucket.bucket.name
@@ -18,7 +18,7 @@ resource "google_storage_bucket_object" "archive" {
   source = "/home/jzburns/MSc-public/pubsub/push/gcf/index.zip"
 }
 
-resource "google_cloudfunctions_function" "function" {
+resource "google_cloudfunctions_function" "pubsub-function" {
   name        = "pubsub-push"
   description = "PubSub Function"
   runtime     = "nodejs14"
