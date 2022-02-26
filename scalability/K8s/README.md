@@ -115,6 +115,11 @@ Before we provision our ``service`` let's take a look at the cluster (without an
 https://console.cloud.google.com/kubernetes/list
 ```
 Let's check out all the additional services that a K8s cluster runs
+## 1.4 Get our credentials
+We need to get our cluster credentials so that ``kubectl`` knows which cluster to work with:
+```
+gcloud container clusters get-credentials "mscqa-gke-cluster" --region us-central1
+```
 
 ## 1.4 Provision the workload
 
