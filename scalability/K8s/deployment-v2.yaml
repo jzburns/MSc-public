@@ -14,4 +14,4 @@ spec:
     spec:
       containers:
       - name: gohttpserver
-        image: docker.io/tudjburns/go-http:v2
+        image: eu.gcr.io/mscitqa/go-http:latest

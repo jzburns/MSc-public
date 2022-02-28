@@ -21,9 +21,3 @@ variable "zone" {
   type        = string
   default     = "europe-west1-c"
 }
-
-variable "client_email" {
-  description = "Service account email address"
-  type        = string
-  default     = ""
-}

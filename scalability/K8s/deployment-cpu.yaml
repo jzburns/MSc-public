@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: gohttpk8s
+  name: mscqa-gke-cluster
 spec:
   replicas: 3
   selector:
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: gohttpserver
-        image: docker.io/tudjburns/go-http:v3
+        image: eu.gcr.io/mscitqa/go-http:latest
         resources:
           requests:
             cpu: 300m

@@ -18,7 +18,7 @@ do
     echo "================================="
     echo ""
 	echo "Reading message ID: $c"
-	gcloud pubsub subscriptions pull msc-subs-1 --auto-ack
+	gcloud pubsub subscriptions pull msc-subs-2 --auto-ack
     echo ""
 done
 

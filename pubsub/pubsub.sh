@@ -15,6 +15,10 @@ sleep 3
 #######################################################
 ## the code for the subscriber (consumer)
 #######################################################
+# replicating an exception in the consumer thread
+gcloud pubsub subscriptions pull msc-subs-1
+
+# within the message timeout window - so this will fail
 gcloud pubsub subscriptions pull msc-subs-1 --auto-ack
 
 #######################################################
