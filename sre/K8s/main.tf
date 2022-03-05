@@ -6,7 +6,7 @@ provider "google" {
 }
 
 resource "google_container_cluster" "primary" {
-  name     = "mscqa-gke-cluster"
+  name     = "msc-sre-gke-cluster"
   location = "us-central1"
 
   remove_default_node_pool = true
@@ -14,17 +14,17 @@ resource "google_container_cluster" "primary" {
   }
 
 resource "google_container_node_pool" "primary_preemptible_nodes" {
-  name       = "mscqa-node-pool"
+  name       = "msc-sre-node-pool"
   location   = "us-central1"
   cluster    = google_container_cluster.primary.name
   
   node_count = 1
 
 ## we will use this later
-  autoscaling {
-    max_node_count = 6
-    min_node_count = 3
-  }
+#   autoscaling {
+#     max_node_count = 6
+#     min_node_count = 3
+#   }
 
   node_config {
     preemptible  = true
@@ -35,7 +35,7 @@ resource "google_container_node_pool" "primary_preemptible_nodes" {
     ## cloud-platform scope and permissions granted via IAM Roles.
     ## TODO: change this to your own service account email
     #############################################################
-    service_account = "mscitqa@appspot.gserviceaccount.com"
+    service_account = "54306319895-compute@developer.gserviceaccount.com"
 
     oauth_scopes    = [
       "https://www.googleapis.com/auth/cloud-platform"
