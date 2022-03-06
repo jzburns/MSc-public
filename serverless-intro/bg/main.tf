@@ -12,19 +12,22 @@ resource "google_storage_bucket_object" "archive" {
   #############################################################
   ## TODO: change 'YOUR-HOME-DIR' to your home directory
   #############################################################
-  source = "/home/YOUR-HOME-DIR/MSc-public/serverless-intro/gcf/index.zip"
+  source = "/home/YOUR-HOME-DIR/MSc-public/serverless-intro/bg/gcf/index.zip"
 }
 
 resource "google_cloudfunctions_function" "function" {
-  name        = "hello-world"
+  name        = "helloGCS"
   description = "Hello World Function"
   runtime     = "nodejs14"
 
   available_memory_mb   = 128
   source_archive_bucket = google_storage_bucket.bucket.name
   source_archive_object = google_storage_bucket_object.archive.name
-  trigger_http          = true
-  entry_point           = "helloGET"
+  entry_point           = "helloGCS"
+  event_trigger {
+    event_type = "google.storage.object.finalize"
+    resource = var.bucket_id
+  }
   region                = var.region
 }
 
