@@ -33,15 +33,7 @@ const escapeHtml = require('escape-html');
  *                     More info: https://expressjs.com/en/api.html#res
  */
 exports.helloGET = (req, res) => {
-    let resp = '';
-    if (req.body.api) {
-        const key = req.body.api;
-        // query the DB to validate this key
-        resp = 'Key is valid'
-    } else {
-        resp = 'key is invalid or empty'
-    }
-  res.send(resp);
+    res.send('Hello World!');
 };
 // [END functions_helloworld_get]
 

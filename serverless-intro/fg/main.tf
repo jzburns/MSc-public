@@ -16,7 +16,7 @@ resource "google_storage_bucket_object" "archive" {
 }
 
 resource "google_cloudfunctions_function" "function" {
-  name        = "hello-world"
+  name        = "helloGET"
   description = "Hello World Function"
   runtime     = "nodejs14"
 
