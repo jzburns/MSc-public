@@ -16,7 +16,7 @@ In this example we will use the a set of HTTP cloud functions to provide an API 
 To begin, we create an API (called ``helloapi`` attached to our project)
 
 ```
- gcloud api-gateway apis create helloapi --project=PROJECT_ID
+ gcloud api-gateway apis create helloapi --project=$GOOGLE_CLOUD_PROJECT
 ```
 
 You will need to confirm this and enable the API. 
@@ -128,11 +128,8 @@ Now that we have deployed our cloud function and configured our API gateway conf
 gcloud api-gateway api-configs create helloapicfg \
   --api=helloapi \
   --openapi-spec=openapi-function.yml \
-  --project=PROJECT_ID
+  --project=$GOOGLE_CLOUD_PROJECT
 ```
-**TODO**
-1. Replace ``PROJECT_ID`` with your project ID
-
 
 ### 2.5 Describe the Service
 
@@ -141,10 +138,8 @@ We can now describe the API gateway:
 ```
 gcloud api-gateway api-configs describe helloapicfg \
 --api=helloapi \
---project=PROJECT_ID 
+--project=$GOOGLE_CLOUD_PROJECT 
 ```
-**TODO**
-1. Replace ``PROJECT_ID`` with your project ID
 
 this should yield the following information
 
@@ -169,11 +164,9 @@ gcloud api-gateway gateways create helloapigateway \
   --api=helloapi \
   --api-config=helloapicfg \
   --location=europe-west1 \
-  --project=PROJECT_ID
-  ```
-**TODO**  
-1. Replace ``PROJECT_ID`` with your project ID
-  
+  --project=$GOOGLE_CLOUD_PROJECT  
+```
+
 This usually takes a few minutes...
 
 ### 2.7 Describe the gateway
@@ -181,10 +174,8 @@ This usually takes a few minutes...
 ```
 gcloud api-gateway gateways describe hello-gateway \
   --location=europe-west1 \
-  --project=PROJECT_ID
+  --project=$GOOGLE_CLOUD_PROJECT
   ```
-**TODO**
-1. Replace ``PROJECT_ID`` with your project ID
 
 This produces output like this:
 
