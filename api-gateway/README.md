@@ -36,12 +36,12 @@ gcloud api-gateway apis describe helloapi --project=PROJECT_ID
 This command returns something the following:
 
 ```
-createTime: '2021-03-18T10:20:02.620875731Z'
+createTime: '2022-03-12T12:40:37.828374233Z'
 displayName: helloapi
-managedService: weatherapi-12k4oabzjy9ze.apigateway.it-quality-attributes-302610.cloud.goog
-name: projects/it-quality-attributes-302610/locations/global/apis/helloapi
+managedService: helloapi-0cjkm7osti9z9.apigateway.mscitqa.cloud.goog
+name: projects/mscitqa/locations/global/apis/helloapi
 state: ACTIVE
-updateTime: '2021-03-18T10:21:40.272559300Z'
+updateTime: '2022-03-12T12:42:14.518710937Z'
 ```
 
 The gcloud command-line tool takes many options, including those described in the gcloud Reference. In addition, for API Gateway, you can set the following options when creating an API:
