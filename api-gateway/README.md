@@ -131,23 +131,9 @@ gcloud api-gateway api-configs create helloapicfg \
   --openapi-spec=openapi-function.yml \
   --project=PROJECT_ID
 ```
-1. ``PROJECT_ID``: your project ID
-2. ``SERVICE_ACCOUNT_EMAILCONFIG_ID``: your project ID
+**TODO**
+1. Replace ``PROJECT_ID`` with your project ID
 
-![image](https://user-images.githubusercontent.com/3818964/111679672-52399f00-8819-11eb-9e13-4457b4d8ea71.png)
-
-You can see in the above screenshot that my ID is based on the ``Compute Engine default service account`` column: ``749635659654-compute@developer.gserviceaccount.com``
-
-So now, my gateway config command looks like this:
-
-```
-gcloud api-gateway api-configs create helloapiconfig \
-  --api=helloapi \
-  --openapi-spec=openapi2-functions.yaml \
-  --project=it-quality-attributes-302610 \
-  --backend-auth-service-account=749635659654-compute@developer.gserviceaccount.com
-```
-This takes a few minutes...
 
 ### 2.5 Describe the Service
 
@@ -156,9 +142,10 @@ We can now describe the API gateway:
 ```
 gcloud api-gateway api-configs describe helloapiconfig \
 --api=helloapi \
---project=it-quality-attributes-302610 
+--project=PROJECT_ID 
 ```
-(be sure to replace ``it-quality-attributes-302610`` with your project ID).
+**TODO**
+1. Replace ``PROJECT_ID`` with your project ID
 
 this should yield the following information
 
@@ -178,13 +165,13 @@ Now deploy the API config on a gateway. Deploying an API config on a gateway def
 Run the following command to deploy the API config you just created to API Gateway:
 
 ```
-gcloud api-gateway gateways create GATEWAY_ID \
-  --api=API_ID --api-config=CONFIG_ID \
-  --location=GCP_REGION --project=PROJECT_ID
+gcloud api-gateway gateways create helloapigateway \
+  --api=helloapi \
+  --api-config=helloapiconfig \
+  --location=GCP_REGION \
+  --project=PROJECT_ID
   ```
-1. ``GATEWAY_ID`` specifies the name of the gateway.
-1. ``API_ID`` specifies the name of the API Gateway API associated with this gateway.
-1. ``CONFIG_ID`` specifies the name of the API config deployed to the gateway.
+**TODO**  
 1. ``GCP_REGION`` is the Google Cloud region for the deployed gateway.
   
 For me:
