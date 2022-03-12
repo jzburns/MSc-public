@@ -140,7 +140,7 @@ gcloud api-gateway api-configs create helloapicfg \
 We can now describe the API gateway:
 
 ```
-gcloud api-gateway api-configs describe helloapiconfig \
+gcloud api-gateway api-configs describe helloapicfg \
 --api=helloapi \
 --project=PROJECT_ID 
 ```
@@ -150,41 +150,32 @@ gcloud api-gateway api-configs describe helloapiconfig \
 this should yield the following information
 
 ```
-createTime: '2021-03-18T19:18:34.254304912Z'
-displayName: helloapiconfig
-gatewayServiceAccount: projects/-/serviceAccounts/749635659654-compute@developer.gserviceaccount.com
-name: projects/749635659654/locations/global/apis/helloapi/configs/helloapiconfig
-serviceConfigId: helloapiconfig-12giv0bogvdnu
+createTime: '2022-03-12T13:40:22.641318676Z'
+displayName: helloapicfg
+gatewayServiceAccount: projects/-/serviceAccounts/743501085081-compute@developer.gserviceaccount.com
+name: projects/743501085081/locations/global/apis/helloapi/configs/helloapicfg
+serviceConfigId: helloapicfg-1jda9uuercbuc
 state: ACTIVE
-updateTime: '2021-03-18T19:21:30.750688883Z
+updateTime: '2022-03-12T13:43:05.759767020Z
 ```
+
 ### 2.6 Creating a gateway
 
-Now deploy the API config on a gateway. Deploying an API config on a gateway defines an external URL that API clients can use to access your API.
+We now want to deploy the config on an API gateway. Deploying an API config on a gateway defines an external URL that API clients can use to access your API.
 
 Run the following command to deploy the API config you just created to API Gateway:
 
 ```
 gcloud api-gateway gateways create helloapigateway \
   --api=helloapi \
-  --api-config=helloapiconfig \
+  --api-config=helloapicfg \
   --location=GCP_REGION \
   --project=PROJECT_ID
   ```
 **TODO**  
-1. ``GCP_REGION`` is the Google Cloud region for the deployed gateway.
+1. Replace ``PROJECT_ID`` with your project ID
+1. Replace ``GCP_REGION`` with the region for the deployed gateway.
   
-For me:
-
-```
-gcloud api-gateway gateways create hello-gateway \
-  --api=helloapi \
-  --api-config=helloapiconfig \
-  --location=us-central1 \
-  --project=it-quality-attributes-302610
-  ```
-(be sure to replace ``it-quality-attributes-302610`` with your project ID).
-
 This usually takes a few minutes...
 
 ### 2.7 Describe the gateway
