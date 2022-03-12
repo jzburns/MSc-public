@@ -308,7 +308,7 @@ API is called. You can find this on the main API gateway page:
 gcloud services enable helloapi-3auqymr9fukrb.apigateway.mscitqa.cloud.goog
 ```
 
-### 3.5 Get your API key and call again
+### 3.6 Get your API key and call again
 
 put this into your browser 
 
