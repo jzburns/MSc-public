@@ -299,7 +299,7 @@ curl https://hello-gateway-secure-8xsgpja5.uc.gateway.dev/hello
 Please use API Key or other form of API consumer identity to call this API.","code":401}
 ```
 
-### 4.5 Get your API key and call again
+### 3.5 Get your API key and call again
 
 ```
 https://console.cloud.google.com/apis/credentials
