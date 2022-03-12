@@ -126,7 +126,7 @@ Edit the file as follows:
 Now that we have deployed our cloud function and configured our API gateway config file, we need to submit it to the management service. To do this correctly we need some additional parameters. In particular, we need to know the ``service account`` email address that is used to create the API.
 
 ```
-gcloud api-gateway api-configs create gcloud api-gateway api-configs create helloapicfg \
+gcloud api-gateway api-configs create helloapicfg \
   --api=helloapi \
   --openapi-spec=openapi-function.yml \
   --project=PROJECT_ID
