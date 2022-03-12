@@ -130,7 +130,6 @@ gcloud api-gateway api-configs create helloapicfg \
   --api=helloapi \
   --openapi-spec=openapi-function.yml \
   --project=PROJECT_ID
-  --backend-auth-service-account=SERVICE_ACCOUNT_EMAILCONFIG_ID \
 ```
 1. ``PROJECT_ID``: your project ID
 2. ``SERVICE_ACCOUNT_EMAILCONFIG_ID``: your project ID
