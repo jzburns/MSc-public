@@ -108,7 +108,7 @@ paths:
       summary: Greet a user
       operationId: hello
       x-google-backend:
-      ##TODO: Change this address to yous cloud function full path
+        ##TODO: Change this address to yous cloud function full path
         address: https://GCP_REGION-PROJECT_ID.cloudfunctions.net/helloGET
       responses:
         '200':
@@ -191,18 +191,18 @@ updateTime: '2021-03-18T20:06:25.825862743Z'
 
 ### 2.8 Test
 
-We can use curl and ``defaultHostname`` to test our API gateway:
+put this into your browser 
 
 ```
-curl https://hello-gateway-9kdlpsw6.uc.gateway.dev/hello
+`https://hello-gateway-9kdlpsw6.uc.gateway.dev/hello``
 ```
 
 and you should see:
 ```
-Your IP address is: 35.195.80.208,107
+Hello World!
 ```
 
-or whatever was in the original ``helloGET`` function (may it is just "Hello World")
+or whatever was in the original ``helloGET`` function (it is just "Hello World" unless you changed it)
 
 ## Part 3
 
@@ -244,7 +244,8 @@ paths:
       summary: Greet a user
       operationId: hello
       x-google-backend:
-        address: https://us-central1-itqa-tester.cloudfunctions.net/helloGET
+        ##TODO: Change this address to yous cloud function full path
+        address: https://GCP_REGION-PROJECT_ID.cloudfunctions.net/helloGET
       security:
       - api_key: []  
       responses:
@@ -259,41 +260,37 @@ securityDefinitions:
     name: "key"
     in: "query"
 ```
+**TODO**
+1. Replace ``https://GCP_REGION-PROJECT_ID.cloudfunctions.net/helloGET`` with your cloud function full path
 
-### 3.2 Download and configure
 
-Download and save this file as ``openapi2-functions-secure.yaml``. Then we create a new configuration:
+### 3.2 Upload this file
+
+Now that we have deployed our cloud function and configured our API gateway config file, we need to submit it to the management service. To do this correctly we need some additional parameters. In particular, we need to know the ``service account`` email address that is used to create the API.
 
 ```
-gcloud api-gateway api-configs create helloapiconfig-secure \
+gcloud api-gateway api-configs create helloapicfg-secure \
   --api=helloapi \
-  --openapi-spec=openapi2-functions-secure.yaml \
-  --project=it-quality-attributes-302610 \
-  --backend-auth-service-account=749635659654-compute@developer.gserviceaccount.com
+  --openapi-spec=openapi-function-secure.yml \
+  --project=$GOOGLE_CLOUD_PROJECT
 ```
-### 3.3 Create a new secure gateway
+
+### 3.2 Create a new secure gateway
 ```
 gcloud api-gateway gateways create hello-gateway-secure \
   --api=helloapi \
   --api-config=helloapiconfig-secure \
   --location=europe-west1 \
-  --project=PROJECT_ID
+  --project=$GOOGLE_CLOUD_PROJECT
   ```
-
-**TODO**
-1. Replace ``PROJECT_ID`` with your project ID
  
  ### 3.4 Describe the gateway and call it
 
 ```
 gcloud api-gateway gateways describe hello-gateway-secure \
   --location=europe-west1 \
-  --project=PROJECT_ID
+  --project=$GOOGLE_CLOUD_PROJECT
   ```
-
-**TODO**
-1. Replace ``PROJECT_ID`` with your project ID
-
  and we see our security error:
  
  ```
