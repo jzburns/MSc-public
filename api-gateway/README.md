@@ -108,7 +108,7 @@ paths:
       summary: Greet a user
       operationId: hello
       x-google-backend:
-##TODO: Change this address field to match the GCP region and Project ID
+      ##TODO: Change this address to yous cloud function full path
         address: https://GCP_REGION-PROJECT_ID.cloudfunctions.net/helloGET
       responses:
         '200':
