@@ -116,10 +116,9 @@ paths:
           schema:
             type: string
 ```
+**TODO**
+1. Replace ``https://GCP_REGION-PROJECT_ID.cloudfunctions.net/helloGET`` with your cloud function full path
 
-Edit the file as follows:
-
-1. In the address field, replace ``GCP_REGION`` with the ``GCP`` region of the deployed function and ``PROJECT_ID`` with the name of your Google Cloud project. You can get this information from the cloud function deploy return message.
 
 ### 2.4 Upload this file
 
