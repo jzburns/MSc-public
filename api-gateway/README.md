@@ -127,7 +127,7 @@ Now that we have deployed our cloud function and configured our API gateway conf
 
 ```
 gcloud api-gateway api-configs create gcloud api-gateway api-configs create helloapicfg \
-  --api=helloapi 
+  --api=helloapi \
   --openapi-spec=openapi-function.yml \
   --project=PROJECT_ID
   --backend-auth-service-account=SERVICE_ACCOUNT_EMAILCONFIG_ID \
