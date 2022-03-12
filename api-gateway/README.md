@@ -31,7 +31,7 @@ On successful completion, we can go on to describe the API:
 
 ### 1.2 Describing the API
 ```
-gcloud api-gateway apis describe helloapi --project=PROJECT_ID
+gcloud api-gateway apis describe helloapi --project=$GOOGLE_CLOUD_PROJECT
 ```
 This command returns something the following:
 
