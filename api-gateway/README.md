@@ -299,15 +299,25 @@ curl https://hello-gateway-secure-8xsgpja5.uc.gateway.dev/hello
 Please use API Key or other form of API consumer identity to call this API.","code":401}
 ```
 
+### 3.5 Eable the API
+
+Now that we have deployed a API gateway with a key, this becomes a formal API that must be enabled. To find out what the 
+API is called. You can find this on the main API gateway page:
+
+```
+gcloud services enable helloapi-3auqymr9fukrb.apigateway.mscitqa.cloud.goog
+```
+
 ### 3.5 Get your API key and call again
 
-```
-https://console.cloud.google.com/apis/credentials
-```
-
-click create credentials and use them for your function, eg:
+put this into your browser 
 
 ```
-curl https://hello-gateway-secure-8xsgpja5.uc.gateway.dev/hello?key="rbKN8AmrbKN8AkTdn948"
+`https://defaultHostname/hello?key=YOUR-API-KEY=GOES-HERE``
+```
+
+and you should see:
+```
+Hello World!
 ```
 
