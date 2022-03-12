@@ -169,12 +169,11 @@ Run the following command to deploy the API config you just created to API Gatew
 gcloud api-gateway gateways create helloapigateway \
   --api=helloapi \
   --api-config=helloapicfg \
-  --location=GCP_REGION \
+  --location=europe-west1 \
   --project=PROJECT_ID
   ```
 **TODO**  
 1. Replace ``PROJECT_ID`` with your project ID
-1. Replace ``GCP_REGION`` with the region for the deployed gateway.
   
 This usually takes a few minutes...
 
@@ -183,7 +182,7 @@ This usually takes a few minutes...
 ```
 gcloud api-gateway gateways describe hello-gateway \
   --location=us-central1 \
-  --project=it-quality-attributes-302610
+  --project=PROJECT_ID
   ```
 (be sure to replace ``it-quality-attributes-302610`` with your project ID).
 
@@ -218,25 +217,9 @@ or whatever was in the original ``helloGET`` function (may it is just "Hello Wor
 
 Now we want multiple paths in our API gateway: For example, we want to export the cloud function ``helloHttp``.
 
-### 3.1 Lab Exercise (10 mins)
+## Part 3
 
-1. deploy the nodejs function ``helloHttp`` from the ``index.js`` file from  2.2
-2. make a copy of ``openapi2-functions.yaml`` - call it ``openapi2-functions-multi.yaml``
-3. add a new path (call it ``hellohttp``)
-4. map this path to the ``helloHttp`` cloud function (use the exact same structure as before)
-5. now deploy using this syntax:
-```
-gcloud api-gateway api-configs create helloapiconfig-multi \
-  --api=helloapi \
-  --openapi-spec=openapi2-functions-multi.yaml \
-  --project=it-quality-attributes-302610 \
-  --backend-auth-service-account=749635659654-compute@developer.gserviceaccount.com
-```
-6. Test this and see if you can now call two paths of your API gateway.
-
-## Part 4
-
-### 4.1 Secure Changes
+### 3.1 Secure Changes
 Now we want to protect our API by using an API key. To do this we specify the use of an API key in our yaml under ``paths/hello``
 
 ```
@@ -290,7 +273,7 @@ securityDefinitions:
     in: "query"
 ```
 
-### 4.2 Download and configure
+### 3.2 Download and configure
 
 Download and save this file as ``openapi2-functions-secure.yaml``. Then we create a new configuration:
 
@@ -301,21 +284,21 @@ gcloud api-gateway api-configs create helloapiconfig-secure \
   --project=it-quality-attributes-302610 \
   --backend-auth-service-account=749635659654-compute@developer.gserviceaccount.com
 ```
-### 4.3 Create a new secure gateway
+### 3.3 Create a new secure gateway
 ```
 gcloud api-gateway gateways create hello-gateway-secure \
   --api=helloapi \
   --api-config=helloapiconfig-secure \
-  --location=us-central1 \
+  --location=europe-west1 \
   --project=it-quality-attributes-302610
   ```
  
- ### 4.4 Describe the gateway and call it
+ ### 3.4 Describe the gateway and call it
 
 ```
 gcloud api-gateway gateways describe hello-gateway-secure \
   --location=us-central1 \
-  --project=it-quality-attributes-302610
+  --project=PROJECT_ID
   ```
  
  and we see our security error:
