@@ -215,10 +215,6 @@ or whatever was in the original ``helloGET`` function (may it is just "Hello Wor
 
 ## Part 3
 
-Now we want multiple paths in our API gateway: For example, we want to export the cloud function ``helloHttp``.
-
-## Part 3
-
 ### 3.1 Secure Changes
 Now we want to protect our API by using an API key. To do this we specify the use of an API key in our yaml under ``paths/hello``
 
