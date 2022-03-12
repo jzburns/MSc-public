@@ -305,7 +305,7 @@ Now that we have deployed a API gateway with a key, this becomes a formal API th
 API is called. You can find this on the main API gateway page:
 
 ```
-gcloud services enable helloapi-3auqymr9fukrb.apigateway.mscitqa.cloud.goog
+gcloud services enable FULL-API-PATH
 ```
 
 ### 3.6 Get your API key and call again
@@ -313,7 +313,7 @@ gcloud services enable helloapi-3auqymr9fukrb.apigateway.mscitqa.cloud.goog
 put this into your browser 
 
 ```
-`https://defaultHostname/hello?key=YOUR-API-KEY=GOES-HERE``
+`https://DEFAULT-HOSTNAME/hello?key=YOUR-API-KEY=GOES-HERE``
 ```
 
 and you should see:
