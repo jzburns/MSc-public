@@ -279,7 +279,7 @@ gcloud api-gateway api-configs create helloapicfg-secure \
 ```
 gcloud api-gateway gateways create hello-gateway-secure \
   --api=helloapi \
-  --api-config=helloapiconfig-secure \
+  --api-config=helloapicfg-secure \
   --location=europe-west1 \
   --project=$GOOGLE_CLOUD_PROJECT
   ```
