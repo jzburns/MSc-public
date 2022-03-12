@@ -324,7 +324,7 @@ API is called. You can find this on the main API gateway page:
 put this into your browser
 
 ```
-`https://DEFAULT-HOSTNAME/hello?key=YOUR-API-KEY=GOES-HERE``
+https://DEFAULT-HOSTNAME/hello?key=YOUR-API-KEY=GOES-HERE
 ```
 
 and you should see:
