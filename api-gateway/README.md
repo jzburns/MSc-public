@@ -180,10 +180,11 @@ This usually takes a few minutes...
 
 ```
 gcloud api-gateway gateways describe hello-gateway \
-  --location=us-central1 \
+  --location=europe-west1 \
   --project=PROJECT_ID
   ```
-(be sure to replace ``it-quality-attributes-302610`` with your project ID).
+**TODO**
+1. Replace ``PROJECT_ID`` with your project ID
 
 This produces output like this:
 
@@ -214,7 +215,7 @@ or whatever was in the original ``helloGET`` function (may it is just "Hello Wor
 
 ## Part 3
 
-### 3.1 Secure Changes
+### 3.1 Secure API Changes
 Now we want to protect our API by using an API key. To do this we specify the use of an API key in our yaml under ``paths/hello``
 
 ```
@@ -285,17 +286,23 @@ gcloud api-gateway gateways create hello-gateway-secure \
   --api=helloapi \
   --api-config=helloapiconfig-secure \
   --location=europe-west1 \
-  --project=it-quality-attributes-302610
+  --project=PROJECT_ID
   ```
+
+**TODO**
+1. Replace ``PROJECT_ID`` with your project ID
  
  ### 3.4 Describe the gateway and call it
 
 ```
 gcloud api-gateway gateways describe hello-gateway-secure \
-  --location=us-central1 \
+  --location=europe-west1 \
   --project=PROJECT_ID
   ```
- 
+
+**TODO**
+1. Replace ``PROJECT_ID`` with your project ID
+
  and we see our security error:
  
  ```
