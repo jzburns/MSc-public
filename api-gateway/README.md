@@ -89,7 +89,7 @@ Take 5 minutes to locate and deploy ``helloGET`` - we did this already in a prev
 
 ### 2.3 Anatomy of an OpenAPI config
 
-Lets look at an OpenAPI config that uses the ``helloGET`` cloud function we have seen previously:
+Lets look at an OpenAPI config that uses the ``helloGET`` cloud function we have seen previously, contained in the file ``openapi-function.yml``
 
 ```
 # openapi2-functions.yaml
@@ -108,6 +108,7 @@ paths:
       summary: Greet a user
       operationId: hello
       x-google-backend:
+##TODO: Change this address field to match the GCP region and Project ID
         address: https://GCP_REGION-PROJECT_ID.cloudfunctions.net/helloGET
       responses:
         '200':
@@ -115,10 +116,6 @@ paths:
           schema:
             type: string
 ```
-
-1. To upload this OpenAPI spec and create an API config using the gcloud command line tool:
-1. From the command line, create a new file named ``openapi2-functions.yaml``
-1. Copy and paste the contents of the OpenAPI spec shown above into the newly created file.
 
 Edit the file as follows:
 
