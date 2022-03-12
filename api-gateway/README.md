@@ -172,7 +172,7 @@ This usually takes a few minutes...
 ### 2.7 Describe the gateway
 
 ```
-gcloud api-gateway gateways describe hello-gateway \
+gcloud api-gateway gateways describe helloapigateway \
   --location=europe-west1 \
   --project=$GOOGLE_CLOUD_PROJECT
   ```
