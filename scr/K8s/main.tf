@@ -7,7 +7,7 @@ provider "google" {
 
 resource "google_container_cluster" "primary" {
   name     = "msc-scr-gke-cluster"
-  location = "us-central1"
+  location = "europe-west6"
 
   remove_default_node_pool = true
   initial_node_count = 1
@@ -15,7 +15,7 @@ resource "google_container_cluster" "primary" {
 
 resource "google_container_node_pool" "primary_preemptible_nodes" {
   name       = "msc-scr-node-pool"
-  location   = "us-central1"
+  location   = "europe-west6"
   cluster    = google_container_cluster.primary.name
   
   node_count = 1
@@ -29,7 +29,7 @@ resource "google_container_node_pool" "primary_preemptible_nodes" {
     ## cloud-platform scope and permissions granted via IAM Roles.
     ## TODO: change this to your own service account email
     #############################################################
-    service_account = "54306319895-compute@developer.gserviceaccount.com"
+    service_account = "743501085081-compute@developer.gserviceaccount.com"
 
     oauth_scopes    = [
       "https://www.googleapis.com/auth/cloud-platform"
