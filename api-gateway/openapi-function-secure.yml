@@ -14,8 +14,7 @@ paths:
       summary: Greet a user
       operationId: hello
       x-google-backend:
-##TODO: Change this address to yous cloud function full path
-        address: https://europe-west1-mscitqa.cloudfunctions.net/helloGET
+        address: https://europe-west1-cloudroom-313818.cloudfunctions.net/helloGET
       security:
       - api_key: []  
       responses:
