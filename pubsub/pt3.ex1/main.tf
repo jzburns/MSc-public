@@ -27,6 +27,9 @@ resource "google_pubsub_subscription" "pubsub-subs" {
   # in order subscriber
   enable_message_ordering = true
 
+  # exactly once delivery in force
+	enable_exactly_once_delivery = true
+
   labels = {
     activity = "msc-labs"
   }
