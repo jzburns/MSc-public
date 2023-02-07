@@ -7,15 +7,10 @@ resource "google_storage_bucket" "bucket" {
 }
 
 resource "google_storage_bucket_object" "archive" {
-  #######################################################################
   ## this is the code to be deployed
-  #######################################################################
   name   = "index.zip"
   bucket = google_storage_bucket.bucket.name
-  #######################################################################
-  ## change this path to your own path:
-  #######################################################################
-  source = "/home/jzburns/MSc-public/pubsub/push/gcf/index.zip"
+  source = "./gcf/index.zip"
 }
 
 resource "google_cloudfunctions_function" "pubsub-function" {
@@ -29,21 +24,12 @@ resource "google_cloudfunctions_function" "pubsub-function" {
   entry_point           = "helloPubSub"
   region                = var.region
 
-  #######################################################################
   ## push notification - notice we don't "pull" messages here
-  #######################################################################
   event_trigger {
     event_type = "google.pubsub.topic.publish"
-    resource = "projects/mscitqa/topics/msc-topic-1"
+		## this topic will be created automatically
+    resource = "projects/${var.project_id}/topics/msc-topic-1"
   }
 }
 
 # IAM entry for all users to invoke the function
-resource "google_cloudfunctions_function_iam_member" "invoker" {
-  project        = google_cloudfunctions_function.function.project
-  region         = var.region
-  cloud_function = google_cloudfunctions_function.function.name
-
-  role   = "roles/cloudfunctions.invoker"
-  member = "allUsers"
-}

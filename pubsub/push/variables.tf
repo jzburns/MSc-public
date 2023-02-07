@@ -1,9 +1,5 @@
-#######################################################################
-## please change this to your own project ID
-#######################################################################
 variable "project_id" {
   description = "The project ID to deploy resources into"
-  default   = "mscitqa"
 }
 
 variable "subnetwork" {
