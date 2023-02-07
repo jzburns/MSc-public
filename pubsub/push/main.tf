@@ -28,8 +28,7 @@ resource "google_cloudfunctions_function" "pubsub-function" {
   event_trigger {
     event_type = "google.pubsub.topic.publish"
 		## this topic will be created automatically
-    resource = "projects/${var.project_id}/topics/msc-topic-1"
+    resource = "projects/${var.project_id}/topics/msc-topic-pubsub"
   }
 }
 
-# IAM entry for all users to invoke the function
