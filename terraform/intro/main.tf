@@ -9,7 +9,7 @@ module "gce-container" {
   source = "github.com/terraform-google-modules/terraform-google-container-vm"
 
   container = {
-    image = "eu.gcr.io/epa-flite-2021/unreliablebanking:latest"
+    image = "eu.gcr.io/epa-labwork-flite-2022/unreliablebanking:latest"
    }
    
   restart_policy = "Always"
