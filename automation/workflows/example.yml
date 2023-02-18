@@ -1,0 +1,27 @@
+main:
+    params: [input]
+    steps:
+    - checkSearchTermInInput:
+        switch:
+            - condition: ${"searchTerm" in input}
+              assign:
+                - searchTerm: ${input.searchTerm}
+              next: readWikipedia
+    - getCurrentTime:
+        call: http.get
+        args:
+            url: https://us-central1-workflowsample.cloudfunctions.net/datetime
+        result: currentDateTime
+    - setFromCallResult:
+        assign:
+            - searchTerm: ${currentDateTime.body.dayOfTheWeek}
+    - readWikipedia:
+        call: http.get
+        args:
+            url: https://en.wikipedia.org/w/api.php
+            query:
+                action: opensearch
+                search: ${searchTerm}
+        result: wikiResult
+    - returnOutput:
+            return: ${wikiResult.body[1]}
