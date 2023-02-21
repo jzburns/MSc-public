@@ -3,7 +3,6 @@
 #######################################################################
 variable "project_id" {
   description = "The project ID to deploy resources into"
-  default   = "msc-devops-338714"
 }
 
 variable "subnetwork" {

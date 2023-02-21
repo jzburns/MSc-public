@@ -1,0 +1,6 @@
+[
+	{ acct-from: 00112211, acct-to: 44550055, amount: 0.5 }
+	{ acct-from: 92988823, acct-to: 99288882, amount: 0.6 }
+	{ acct-from: 92988823, acct-to: 99883276, amount: 0.1 }
+	{ acct-from: 00117761, acct-to: 77619981, amount: 0.2 }
+]

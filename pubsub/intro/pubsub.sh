@@ -18,3 +18,4 @@ sleep 3
 
 # within the message timeout window - so this will fail
 gcloud pubsub subscriptions pull msc-subs-1 --auto-ack
+gcloud pubsub subscriptions pull msc-subs-1 --auto-ack

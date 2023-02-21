@@ -29,16 +29,9 @@ resource "google_container_node_pool" "primary_preemptible_nodes" {
   node_config {
     preemptible  = true
     machine_type = "e2-medium"
-
-    #############################################################
-    ## Google recommends custom service accounts that have 
-    ## cloud-platform scope and permissions granted via IAM Roles.
-    ## TODO: change this to your own service account email
-    #############################################################
-    service_account = "mscitqa@appspot.gserviceaccount.com"
-
-    oauth_scopes    = [
-      "https://www.googleapis.com/auth/cloud-platform"
-    ]
-  }
+		## service_account = "mscitqa@appspot.gserviceaccount.com"
+		## oauth_scopes    = [
+		## 	"https://www.googleapis.com/auth/cloud-platform"
+  	## ]
+	}
 }
