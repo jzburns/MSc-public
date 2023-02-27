@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: gohttpserver
-        image: eu.gcr.io/mscitqa/go-http:latest
+        image: eu.gcr.io/epa-labwork-flite-2022/unreliablebanking:latest
         resources:
           requests:
             cpu: 300m

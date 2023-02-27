@@ -6,12 +6,12 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      run: load-tester
+      run: unreliablebanking
   template:
     metadata:
       labels:
-        run: load-tester
+        run: unreliablebanking
     spec:
       containers:
-      - name: gohttpserver
-        image:  eu.gcr.io/mscitqa/go-http:latest
+      - name: unreliablebanking
+        image:  eu.gcr.io/epa-labwork-flite-2022/unreliablebanking:latest

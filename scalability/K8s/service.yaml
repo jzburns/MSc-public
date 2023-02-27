@@ -4,9 +4,8 @@ metadata:
   name: go-http-nlb-service
 spec:
   selector:
-    run: load-tester
-  type: LoadBalancer
+    run: unreliablebanking
+  type: NodePort
   ports:
   - protocol: TCP
-    port: 80
-    targetPort: 8080
+    port: 8080
