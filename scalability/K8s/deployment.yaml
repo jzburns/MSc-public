@@ -15,3 +15,6 @@ spec:
       containers:
       - name: unreliablebanking
         image:  eu.gcr.io/epa-labwork-flite-2022/unreliablebanking:latest
+        ports:
+          - containerPort: 80
+            protocol: TCP

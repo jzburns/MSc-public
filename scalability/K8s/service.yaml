@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: go-http-nlb-service
+  name: ubankingnp
 spec:
   selector:
     run: unreliablebanking
   type: NodePort
   ports:
   - protocol: TCP
-    port: 8080
+    port: 80
