@@ -9,3 +9,4 @@ do
     | xargs kubectl delete
   sleep 10
 done
+
