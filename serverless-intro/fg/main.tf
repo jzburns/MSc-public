@@ -9,10 +9,7 @@ resource "google_storage_bucket" "bucket" {
 resource "google_storage_bucket_object" "archive" {
   name   = "index.zip"
   bucket = google_storage_bucket.bucket.name
-  #############################################################
-  ## TODO: change 'YOUR-HOME-DIR' to your home directory
-  #############################################################
-  source = "/home/YOUR-HOME-DIR/MSc-public/serverless-intro/fg/gcf/index.zip"
+  source = "./gcf/index.zip"
 }
 
 resource "google_cloudfunctions_function" "function" {

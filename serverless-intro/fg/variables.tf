@@ -1,9 +1,5 @@
-#######################################################################
-## TODO: change 'YOUR-PROJ-ID' to your own project ID
-#######################################################################
 variable "project_id" {
   description = "The project ID to deploy resources into"
-  default   = "YOUR-PROJ-ID"
 }
 
 variable "subnetwork" {
