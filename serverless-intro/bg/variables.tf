@@ -2,13 +2,10 @@ variable "project_id" {
   description = "The project ID to deploy resources into"
 }
 
-#######################################################################
-## TODO: change 'YOUR-BUCKET-ID' to your own bucket ID
-#######################################################################
 variable "bucket_id" {
   description = "The project ID to deploy resources into"
-  default   = "YOUR-BUCKET-ID"
 }
+
 variable "subnetwork" {
   description = "The name of the subnetwork to deploy instances into"
   default = "default"
