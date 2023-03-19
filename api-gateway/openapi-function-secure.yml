@@ -1,4 +1,4 @@
-# openapi-function-with-key.yml
+# openapi-function-secure.yml
 swagger: '2.0'
 info:
   title: helloapi a simple API test
@@ -14,7 +14,7 @@ paths:
       summary: Greet a user
       operationId: hello
       x-google-backend:
-        address: https://europe-west1-cloudroom-313818.cloudfunctions.net/helloGET
+        address: https://europe-west1-msc-itqa.cloudfunctions.net/helloGET 
       security:
       - api_key: []  
       responses:
