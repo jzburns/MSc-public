@@ -24,10 +24,6 @@ contract PlayerStateManagement {
     return msg.sender;
   }
   
-  receive() external payable {
-    // This function is executed when a contract receives plain Ether (without data)
-  }
-
   function donate() external payable {
     // This function is executed when a contract receives plain Ether (without data)
     donatatedBalance += msg.value;
