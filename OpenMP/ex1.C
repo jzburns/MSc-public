@@ -46,15 +46,14 @@ int main (int argc, char** argv) {
 }
 
 void demoST() {
-	// master thread executes sequentially
-	for (int i = 0; i < arraySize; i++)
+	// single thread executes sequentially
+	for (int i = 0; i < arraySize; i++) {
  		c[i] = sqrt(a[i] + b[i]);
+	}
 }
 
 void demoOpenMP() {
-	// launch OpenMP
-	// Fork-Join Model
-	int n = arraySize;
+	// OpenMP Fork-Join Model
 	#pragma omp parallel for
 	for (int i = 0; i < arraySize; i++) {
  		c[i] = sqrt(a[i] + b[i]);
